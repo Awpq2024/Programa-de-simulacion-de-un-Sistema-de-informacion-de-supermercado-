@@ -2,6 +2,7 @@
 #include <string>
 #include "producto.h"
 #include "funciones.h"
+
  
 using namespace std;
 
@@ -13,6 +14,7 @@ int main() {
 
     int opcion;
     do {
+    	system("cls");
         cout<<"--- Supermercado ---"<<endl;
         cout<<"1. Agregar producto"<<endl;
         cout<<"2. Mostrar productos agregados"<<endl;
@@ -22,16 +24,20 @@ int main() {
 
         switch (opcion){
             case 1:
+            	system("cls");
                 agregarProducto(articulo, numeroProducto, siguienteID);
                 break;
+                
             case 2:
+            	system("cls");
                 mostrarProductos(articulo, numeroProducto);
                 break;
             case 3:
                 cout<<"Saliendo del programa..."<<endl;
                 break;
             default:
-                cout<<"Opcion no valida."<<endl;
+                cout<<endl<<"Opcion no valida."<<endl<<endl;
+                system("pause");
         }
 
     } while(opcion!=3);
