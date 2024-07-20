@@ -32,7 +32,33 @@ void mostrarProductos(const producto articulo[], int numeroProducto){
         for (int i = 0; i < numeroProducto; ++i){
             cout<<"ID del producto: "<<articulo[i].id<<", Nombre: "<<articulo[i].nombre<<", Precio: $"<<articulo[i].precio<<", Cantidad: "<<articulo[i].cantidad<<endl;
             cout<<endl;
-			system("pause");
         }
+        system("pause");
     }
+}
+
+void eliminarProducto(producto articulo[],int& numeroProducto){
+	if(numeroProducto==0){
+        cout<<"No hay productos agregados."<<endl;
+        system("pause");
+    }else{
+    	int deleteID;
+    	if(numeroProducto==1){
+    		deleteID=1;
+		}else{
+			cout<<"Ingrese el ID del producto a eliminar: ";
+    		cin>>deleteID;
+		}
+    	if(numeroProducto>0&&deleteID<=numeroProducto){
+    		for(int i=deleteID;i<numeroProducto-1;i++){
+    			articulo[i]=articulo[i+1];
+			}
+			cout<<"Producto eliminado."<<endl;
+			system("pause");
+		}else{
+			cout<<"Indice no valido."<<endl;
+			system("pause");
+		}
+    	numeroProducto--;
+	}
 }

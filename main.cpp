@@ -17,8 +17,9 @@ int main() {
     	system("cls");
         cout<<"--- Supermercado ---"<<endl;
         cout<<"1. Agregar producto"<<endl;
-        cout<<"2. Mostrar productos agregados"<<endl;
-        cout<<"3. Salir"<<endl;
+        cout<<"2. Eliminar producto"<<endl;
+        cout<<"3. Mostrar productos agregados"<<endl;
+        cout<<"4. Salir"<<endl;
         cout<<"Ingrese una opcion: ";
         cin>>opcion;
 
@@ -27,20 +28,22 @@ int main() {
             	system("cls");
                 agregarProducto(articulo, numeroProducto, siguienteID);
                 break;
-                
             case 2:
+				system("cls");
+				eliminarProducto(articulo,numeroProducto);
+				break;   
+            case 3:
             	system("cls");
                 mostrarProductos(articulo, numeroProducto);
                 break;
-            case 3:
+            case 4:
                 cout<<"Saliendo del programa..."<<endl;
                 break;
             default:
                 cout<<endl<<"Opcion no valida."<<endl<<endl;
                 system("pause");
         }
-
-    } while(opcion!=3);
+    } while(opcion!=4);
 
     return 0;
 }

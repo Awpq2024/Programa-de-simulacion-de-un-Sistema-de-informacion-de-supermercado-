@@ -5,5 +5,6 @@
 
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID);
 void mostrarProductos(const producto articulo[], int numeroProducto);
+void eliminarProducto(producto articulo[],int& numeroProducto);
 
 #endif
