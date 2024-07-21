@@ -39,7 +39,9 @@ void mostrarProductos(const producto articulo[], int numeroProducto){
 }
 
 
-void registrarVenta(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto) {
+
+
+void registrarVenta(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto){
     if (numeroVenta < maximasVentas) {
         gestionDeventas temporal;
         cout << "Ingrese el nombre del producto: ";
@@ -96,3 +98,85 @@ void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
 	cout<<endl;
 	system("pause");
 }
+
+void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo){
+	int opcionReclamo;
+	do {
+    	system("cls");
+        cout<<"--- Supermercado ---"<<endl;
+        cout<<"---- Reclamos ----"<<endl;
+        cout<<"1. Agregar reclamo"<<endl;
+        cout<<"2. Eliminar reclamo"<<endl;
+        cout<<"3. Mostrar reclamos"<<endl;
+        cout<<"4. volver al menu"<<endl;
+        cout<<"eliga una opcion: ";
+        cin>>opcionReclamo;
+		switch(opcionReclamo){
+			case 1:
+                system("cls");
+                agregarReclamo(quejas, numeroReclamo, siguienteIDReclamo);
+                system("pause");
+                break;
+            case 2:
+                system("cls");
+                eliminarReclamo(quejas, numeroReclamo);
+                system("pause");
+                break;
+            case 3:
+                system("cls");
+                mostrarReclamos(quejas, numeroReclamo);
+                system("pause");
+                break;
+            case 4:
+                break;
+            default:
+                cout<<endl<<"Opcion no valida."<<endl<<endl;
+                system("pause");
+        }
+    }while(opcionReclamo!=4);
+    return;
+}
+void agregarReclamo(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo){
+    if (numeroReclamo<maximosReclamos){
+        reclamo auxiliar;
+        auxiliar.id=siguienteIDReclamo++;
+        cout<<"Ingrese la descripcion del reclamo: ";
+        cin.ignore();
+        getline(cin,auxiliar.descripcion);
+        quejas[numeroReclamo++]=auxiliar;
+        cout<<"Reclamo agregado exitosamente."<<endl;
+    } else {
+        cout<<"No se pueden agregar más reclamos."<<endl;
+    }
+}
+void eliminarReclamo(reclamo quejas[], int &numeroReclamo){
+    int indice=-1;
+    int id;
+    cout<<"Ingrese el ID del reclamo a eliminar: ";
+    cin>>id;
+    for (int i=0;i<numeroReclamo;++i){
+        if (quejas[i].id==id){
+            indice=i;
+            break;
+        }
+    }
+    if (indice!=-1){
+        for (int i=indice;i<numeroReclamo-1;++i){
+            quejas[i]=quejas[i+1];
+        }
+        --numeroReclamo;
+        cout<<"Reclamo eliminado exitosamente."<<endl;
+    } else {
+        cout<<"Reclamo no encontrado."<<endl;
+    }
+}
+void mostrarReclamos(const reclamo quejas[], int numeroReclamo){
+    if (numeroReclamo==0){
+        cout<<"No hay reclamos."<<endl;
+    } else {
+        for (int i=0;i<numeroReclamo;++i){
+            cout<<"ID: "<<quejas[i].id<<", Descripcion: "<<quejas[i].descripcion<<endl;
+        }
+    }
+}
+

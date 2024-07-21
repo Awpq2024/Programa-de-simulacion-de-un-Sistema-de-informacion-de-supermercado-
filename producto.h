@@ -3,6 +3,7 @@
 
 const int maximosProductos=100;
 const int maximasVentas=100;
+const int maximosReclamos=100;
 
 struct producto
 {
@@ -18,6 +19,12 @@ struct gestionDeventas
 	float precioTotal;
 	int id;
 };
+struct reclamo
+{
+    int id;
+    std::string descripcion;
+};
+
 
 #endif
 

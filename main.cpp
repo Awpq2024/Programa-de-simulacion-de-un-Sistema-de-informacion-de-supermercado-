@@ -8,20 +8,25 @@ using namespace std;
 
 producto articulo[maximosProductos];
 gestionDeventas ventas[maximasVentas];
+reclamo quejas[maximosReclamos];
+
 int numeroProducto=0;
 int numeroVenta=0;
+int numeroReclamo=0;
 
 int main() {
     int siguienteID=0;
+	int siguienteIDReclamo=0;
 
     int opcion;
     do {
     	system("cls");
         cout<<"--- Supermercado ---"<<endl;
         cout<<"1. Agregar producto"<<endl;
-        cout<<"2. Mostrar productos agregados"<<endl;
+        cout<<"2. Mostrar productos agregados"<<endl;      
         cout<<"3. Ventas realizadas"<<endl;
-        cout<<"4. Salir"<<endl;
+        cout<<"4. Menu de Reclamos (Agregar, Eliminar, Mostrar)"<<endl;
+        cout<<"5. Salir"<<endl;
         cout<<"Ingrese una opcion: ";
         cin>>opcion;
 
@@ -71,6 +76,10 @@ int main() {
 				}while(opcionVentas!=4);
 				break;
             case 4:
+                system("cls");
+                MenuReclamos(quejas,numeroReclamo, siguienteIDReclamo);
+                break;
+            case 5:
                 cout<<"Saliendo del programa..."<<endl;
                 break;
             default:
@@ -78,7 +87,7 @@ int main() {
                 system("pause");
         }
 
-    } while(opcion!=4);
+    } while(opcion!=5);
 
     return 0;
 }
