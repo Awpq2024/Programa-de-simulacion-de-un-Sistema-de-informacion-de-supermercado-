@@ -11,18 +11,23 @@ reclamo quejas[maximosReclamos];
 descuento descuentos[maximosDescuentos];
 
 //Se inicializan los numeros de distintas estructuras en 0
-int numeroProducto=0;
-int numeroVenta=0;
+int numeroProducto=10;
+int numeroVenta=10;
 int numeroReclamo=0;
 int numeroDescuentos=0;
 
+
 int main() {
 	//Se inicializan los ID para las estructuras de producto, reclamo y descuento
-    int siguienteID=1;
+    int siguienteID=11;
 	int siguienteIDReclamo=1;
 	int siguienteIDDescuento=1;
     int opcion;//se crea la variable opcion
     
+    // Inicializar productos predefinidos
+    inicializarDatos(articulo, numeroProducto, quejas, numeroReclamo, descuentos, numeroDescuentos, ventas, numeroVenta);
+    
+
     do {//El menu se repite hasta elegir la opcion "6" del do while
     	system("cls");
         cout<<"--- Supermercado ---"<<endl;

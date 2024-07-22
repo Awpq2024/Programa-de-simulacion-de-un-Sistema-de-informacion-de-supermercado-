@@ -2,6 +2,7 @@
 #define FUNCIONES_H
 #include <iostream>
 #include "producto.h"
+void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuento,gestionDeventas ventas[], int &numeroVenta);
 
 //Funciones de productos
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID);
