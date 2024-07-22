@@ -41,10 +41,41 @@ int main() {
                 agregarProducto(articulo, numeroProducto, siguienteID);
                 break;
                 
-            case 2://Se llama a la funcion que muestra los productos predefinidos y los registrados
-            	system("cls");
-                mostrarProductos(articulo, numeroProducto);
-                break;
+            case 2://Se hace un sub menu para mostrar los productos predefinidos  y los registrados
+            	int opcionMostrarProductos;
+            	do{
+            		system("cls");
+					cout<<"1. Mostrar productos "<<endl;
+            		cout<<"2. Mostrar productos por precio Mayor al menor "<<endl;
+       				cout<<"3. Mostrar productos alfabeticamente "<<endl;
+       				cout<<"4. Volver al menu principal "<<endl;
+       				cout<<"Ingrese una opcion: ";
+       				cin>>opcionMostrarProductos;
+       			
+       				switch(opcionMostrarProductos)
+            		{
+            			case 1://llama a la funcion mostrar producto
+					        system("cls");
+            				mostrarProductos(articulo, numeroProducto, ventas, numeroVenta);
+            				break;
+            			case 2://llama a la funcion mostrar producto por precio de mayor a menor
+            				system("cls");
+            				mostrarProductosPorPrecio(articulo, numeroProducto, ventas, numeroVenta);
+            				break;
+            			case 3://llama a la funcion mostrar producto por orden alfabetico
+            				system("cls");
+            				mostrarProductosAlfabeticamente(articulo, numeroProducto, ventas, numeroVenta);
+            				break;  
+						case 4://Opcion para volver al menu principal
+						    cout<<"Volviendo al menu principal..."<<endl;
+               				break;     			
+            			default:
+            				cout<<endl<<"Opcion no valida."<<endl<<endl;
+            				system("pause");
+               				break;
+					}
+				}while(opcionMostrarProductos!=4);
+				break;
             case 3:// se despliega un Menu secundario que permite Gestionar las ventas
             	int opcionVentas;
             	do{

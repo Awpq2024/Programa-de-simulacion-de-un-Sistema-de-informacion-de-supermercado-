@@ -5,7 +5,10 @@
 
 //Funciones de productos
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID);
-void mostrarProductos(const producto articulo[], int numeroProducto);
+void mostrarProductos(const producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta);
+void mostrarProductosAlfabeticamente(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta);
+void mostrarProductosPorPrecio(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta);
+
 
 //funciones Ventas
 void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos);
