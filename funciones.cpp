@@ -5,7 +5,7 @@
 using namespace std;
 
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID){
-    if (numeroProducto < maximosProductos){
+    if (numeroProducto<maximosProductos){
     	int opcion;
         producto auxiliar;
         cout<<"Ingrese el nombre del producto: ";
@@ -41,7 +41,7 @@ void mostrarProductos(const producto articulo[], int numeroProducto){
 
 
 
-void registrarVenta(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto){
+void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
     if (numeroVenta < maximasVentas) {
         gestionDeventas temporal;
         cout << "Ingrese el nombre del producto: ";
@@ -56,9 +56,10 @@ void registrarVenta(gestionDeventas ventas[], int& numeroVenta, producto articul
                 	temporal.id = articulo[i].id;
                     ventas[numeroVenta] = temporal;
                     articulo[i].cantidad -= temporal.cantidad;
+                    float precioSinDescuento = temporal.cantidad * articulo[i].precio;
+                    float descuento = calcularDescuento(precioSinDescuento, temporal.cantidad, descuentos, numeroDescuentos);
                     ventas[numeroVenta].precioTotal = temporal.cantidad * articulo[i].precio;
-
-                    cout << "El precio total es: $" << ventas[numeroVenta].precioTotal << endl;
+                    cout << "El precio total es: $" << ventas[numeroVenta].precioTotal<<"con un descuento de: "<<descuento<<endl;
                     cout << "Venta registrada correctamente." << endl;
                     numeroVenta++;
                 } else {
@@ -109,7 +110,7 @@ void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo)
         cout<<"2. Eliminar reclamo"<<endl;
         cout<<"3. Mostrar reclamos"<<endl;
         cout<<"4. volver al menu"<<endl;
-        cout<<"eliga una opcion: ";
+        cout<<"Eliga una opcion: ";
         cin>>opcionReclamo;
 		switch(opcionReclamo){
 			case 1:
@@ -144,9 +145,9 @@ void agregarReclamo(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclam
         cin.ignore();
         getline(cin,auxiliar.descripcion);
         quejas[numeroReclamo++]=auxiliar;
-        cout<<"Reclamo agregado exitosamente."<<endl;
+        cout<<"Reclamo agregado correctamente"<<endl;
     } else {
-        cout<<"No se pueden agregar más reclamos."<<endl;
+        cout<<"Limite de reclamos alcanzados"<<endl;
     }
 }
 void eliminarReclamo(reclamo quejas[], int &numeroReclamo){
@@ -180,3 +181,107 @@ void mostrarReclamos(const reclamo quejas[], int numeroReclamo){
     }
 }
 
+float calcularDescuento(float precioTotal, int cantidad, const descuento descuentos[], int numeroDescuentos) {
+    float descuento=0.0;
+    for (int i=0;i<numeroDescuentos;++i) {
+        if (precioTotal>=descuentos[i].precioMinimo && cantidad>=descuentos[i].cantidadMinima){
+            descuento+=precioTotal*(descuentos[i].porcentaje/100);
+        }
+    }
+    return descuento;
+}
+void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguienteIDDescuento){
+    int opcionDescuentos;
+    do {
+        system("cls");
+        cout<<"--- Supermercado ---"<<endl;
+        cout<<"---- Descuentos ----"<<endl;
+        cout<<"1. Agregar descuento"<<endl;
+        cout<<"2. Eliminar descuento"<<endl;
+        cout<<"3. Mostrar descuentos"<<endl;
+        cout<<"4. Volver al menu principal"<<endl;
+        cout<<"Ingrese una opcion: ";
+        cin>>opcionDescuentos;
+        switch(opcionDescuentos){
+                case 1:
+                    system("cls");
+                    agregarDescuento(descuentos, numeroDescuentos, siguienteIDDescuento);
+                    system("pause");
+                    break;
+                case 2:
+                    system("cls");
+                    eliminarDescuento(descuentos, numeroDescuentos);
+                    system("pause");
+                    break;
+                case 3:
+                    system("cls");
+                    mostrarDescuentos(descuentos, numeroDescuentos);
+                    system("pause");
+                    break;
+                case 4:
+                    break;
+                default:
+                    cout<<endl<<"Opcion no valida."<<endl<<endl;
+                    system("pause");
+                    break;
+                    }
+    }while(opcionDescuentos!=4);
+    return;
+}
+
+void agregarDescuento(descuento descuentos[], int &numeroDescuentos,int &siguienteIDDescuento){
+    if (numeroDescuentos<maximosDescuentos){
+        descuento nuevoDescuento;//se crea una nuevo descuento con la estructura descuento, y se ingresan sus variables
+        nuevoDescuento.id=siguienteIDDescuento++;
+		cout<<"Ingrese el precio minimo para el descuento: ";
+        cin>>nuevoDescuento.precioMinimo;
+        cout<<"Ingrese la cantidad minima para el descuento: ";
+        cin>>nuevoDescuento.cantidadMinima;
+        cout<<"Ingrese el porcentaje de descuento: ";
+        cin>>nuevoDescuento.porcentaje;
+        descuentos[numeroDescuentos++]=nuevoDescuento;//Se agrega el nuevo descuento y se aumenta la cantidad de descuentos
+        cout<<"Descuento agregado exitosamente"<<endl;
+    }else{//Se muestra un enunciado al llegar al  limite de descuentos 
+        cout<<"Limite de descuentos alcanzados"<<endl;
+    }
+}
+//Funcion para eliminar un descuento agregado
+void eliminarDescuento(descuento descuentos[], int &numeroDescuentos){
+    if (numeroDescuentos==0){//Si no hay ningun descuento registrado se muestra un enunciado
+        cout<<"No hay descuentos para eliminar"<<endl;
+        return;
+    }
+    int idAuxiliar;//se crea una variable 
+    cout<<"Ingrese el ID del descuento a eliminar: ";
+    cin>>idAuxiliar;
+    bool encontrado=false;//Se crea un variable para indicar si el descuento fue encontrado
+    for (int i=0;i<numeroDescuentos;++i){
+        if (descuentos[i].id==idAuxiliar){//Se verifica si el id ingresado coincide con el id del for
+            for (int j=i;j<numeroDescuentos-1;++j){//se usa un for para reordenar el arreglo de las estructuras
+                descuentos[j]=descuentos[j+1];
+            }
+            --numeroDescuentos;//se elimina una posicion del total de descuentos registrados
+            encontrado=true;//el producto fue encontrado y es eliminado
+            cout<<"Descuento eliminado exitosamente"<<endl;
+            break;
+        }
+    }
+    if (!encontrado){
+        cout<<"Descuento no encontrado"<<endl;
+    }
+}
+
+// Función para mostrar los descuentos
+void mostrarDescuentos(const descuento descuentos[], int numeroDescuentos) {
+    if (numeroDescuentos==0){//Muestra un enunciado si no hay ningun descuento agregado
+        cout<<"No hay descuentos disponibles."<<endl;
+        return;
+    }
+    cout<<"--- Descuentos disponibles ---"<<endl;//Se muestra los descuentos
+    for (int i=0;i<numeroDescuentos;++i){//Se usa un for para mostrar todos los descuentos registrados
+        cout<<"ID del descuento: "<<descuentos[i].id//Id del descuento
+			<<", precio para el descuento: $"<<descuentos[i].precioMinimo//precio minimo para el descuento
+            <<", Cantidad para el descuento: "<<descuentos[i].cantidadMinima//cantidad minima para el descuento
+            <<", Porcentaje del descuento: "<<descuentos[i].porcentaje<<"%"<<endl;//Descuento registrado previamente
+    }
+}
