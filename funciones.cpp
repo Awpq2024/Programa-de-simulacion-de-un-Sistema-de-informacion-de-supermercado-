@@ -24,21 +24,96 @@ void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID)
     }
 }
 
-void mostrarProductos(const producto articulo[], int numeroProducto){
-    if (numeroProducto==0){
-        cout<<"No hay productos agregados.\n"<<endl;
+void mostrarProductos(const producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta){
+   if (numeroProducto == 0){
+        cout << "No hay productos agregados.\n" << endl;
         system("pause");
-    }else{
-        cout<<"--- Productos agregados ---"<<endl;
+    } else {
+        cout << "--- Productos agregados ---" << endl;
         for (int i = 0; i < numeroProducto; ++i){
-            cout<<"ID del producto: "<<articulo[i].id<<", Nombre: "<<articulo[i].nombre<<", Precio: $"<<articulo[i].precio<<", Cantidad: "<<articulo[i].cantidad<<endl;
-            cout<<endl;
+            cout<<"ID del producto: "<<articulo[i].id<<", Nombre: "<<articulo[i].nombre<<", Precio: $"<<articulo[i].precio<<", Cantidad: "<<articulo[i].cantidad<<endl; 
+            int cantidadVendida = 0;
+            for (int j = 0; j < numeroVenta; ++j){
+                if (ventas[j].nombreProducto == articulo[i].nombre){
+                    cantidadVendida += ventas[j].cantidad;
+                }
+            }
+            cout<<"Cantidad vendida: " <<cantidadVendida<<endl;
+            cout<< endl;
         }
-        system("pause");
+        system("pause");    
     }
 }
 
+void mostrarProductosAlfabeticamente(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta){
+	if (numeroProducto == 0){
+        cout << "No hay productos agregados.\n" << endl;
+        system("pause");
+    } else {
+		for (int i = 0; i < numeroProducto-1 ; ++i)
+		{
+			for (int j = 0; j < numeroProducto-1-i ; ++j)
+			{
+				if (articulo[j].nombre > articulo[j+1].nombre) 
+				{
+                	producto temp = articulo[j];
+                	articulo[j] = articulo[j + 1];
+                	articulo[j + 1] = temp;
+            	}
+			
+			}                   
+   		}
+	    cout << "--- Productos ordenados alfabeticamente ---" << endl;
+    	for (int i = 0 ; i < numeroProducto ; ++i)
+   		{
+        	cout<<"ID del producto: "<<articulo[i].id<<", Nombre: "<<articulo[i].nombre<<", Precio: $"<<articulo[i].precio<<", Cantidad: "<<articulo[i].cantidad<<endl; 
+       		int cantidadVendida = 0;
+        	for (int j = 0; j < numeroVenta; ++j){
+            	if (ventas[j].nombreProducto == articulo[i].nombre){
+           		cantidadVendida += ventas[j].cantidad;
+            	}
+            cout<<"Cantidad vendida: " <<cantidadVendida<<endl;
+        	cout<< endl;
+        	}       
+       		system("pause");    
+		}
+	}
+}
 
+void mostrarProductosPorPrecio(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta ){
+	if (numeroProducto == 0){
+        cout << "No hay productos agregados.\n" << endl;
+        system("pause");
+    } else {	
+		for (int i=0; numeroProducto-1 ; ++i)
+		{
+			for (int j=0; j < numeroProducto-1-i ; ++j)
+			{
+				if (articulo[j].precio > articulo[j+1].precio) 
+				{
+            	    producto temp = articulo[j];
+                	articulo[j] = articulo[j + 1];
+                	articulo[j + 1] = temp;
+            	}
+			
+			}                   
+    	}
+    	cout << "--- Productos ordenado por precio (Mayor a menor) ---" << endl;
+    	for (int i=numeroProducto-1 ; i >= 0 ; --i)
+    	{
+        	cout<<"ID del producto: "<<articulo[i].id<<", Nombre: "<<articulo[i].nombre<<", Precio: $"<<articulo[i].precio<<", Cantidad: "<<articulo[i].cantidad<<endl; 
+        	int cantidadVendida = 0;
+        	for (int j = 0; j < numeroVenta; ++j){
+            	if (ventas[j].nombreProducto == articulo[i].nombre){
+            	cantidadVendida += ventas[j].cantidad;
+            	}
+            cout<<"Cantidad vendida: " <<cantidadVendida<<endl;
+        	cout<< endl;
+        	}       
+        	system("pause");   
+		}
+	}
+}
 
 
 void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
