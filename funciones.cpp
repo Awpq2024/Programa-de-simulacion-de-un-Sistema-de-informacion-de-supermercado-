@@ -46,74 +46,66 @@ void mostrarProductos(const producto articulo[], int numeroProducto, const gesti
 }
 
 void mostrarProductosAlfabeticamente(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta){
-	if (numeroProducto == 0){
-        cout << "No hay productos agregados.\n" << endl;
-        system("pause");
-    } else {
-		for (int i = 0; i < numeroProducto-1 ; ++i)
-		{
-			for (int j = 0; j < numeroProducto-1-i ; ++j)
-			{
-				if (articulo[j].nombre > articulo[j+1].nombre) 
-				{
-                	producto temp = articulo[j];
-                	articulo[j] = articulo[j + 1];
-                	articulo[j + 1] = temp;
-            	}
-			
-			}                   
-   		}
-	    cout << "--- Productos ordenados alfabeticamente ---" << endl;
-    	for (int i = 0 ; i < numeroProducto ; ++i)
-   		{
-        	cout<<"ID del producto: "<<articulo[i].id<<", Nombre: "<<articulo[i].nombre<<", Precio: $"<<articulo[i].precio<<", Cantidad: "<<articulo[i].cantidad<<endl; 
-       		int cantidadVendida = 0;
-        	for (int j = 0; j < numeroVenta; ++j){
-            	if (ventas[j].nombreProducto == articulo[i].nombre){
-           		cantidadVendida += ventas[j].cantidad;
-            	}
-            cout<<"Cantidad vendida: " <<cantidadVendida<<endl;
-        	cout<< endl;
-        	}       
-       		system("pause");    
-		}
-	}
+	
+	for (int i = 0; i < numeroProducto ; ++i)
+    {
+        for (int j = 0; j < numeroProducto ; ++j)
+        {
+            if (articulo[j].nombre < articulo[j+1].nombre) 
+            {
+                producto temp = articulo[j];
+                articulo[j] = articulo[j + 1];
+                articulo[j + 1] = temp;
+            }
+        }                   
+    }
+
+    cout << "--- Productos ordenados alfabeticamente ---" << endl;
+    for (int i = 0 ; i < numeroProducto ; ++i)
+    {
+        cout << "ID del producto: " << articulo[i].id<< ", Nombre: " << articulo[i].nombre<< ", Precio: $" << articulo[i].precio<< ", Cantidad: " << articulo[i].cantidad << endl; 
+        int cantidadVendida = 0;
+        for (int j = 0; j < numeroVenta; ++j)
+        {
+            if (ventas[j].nombreProducto == articulo[i].nombre)
+            {
+                cantidadVendida += ventas[j].cantidad;
+            }
+        }
+        cout << "Cantidad vendida: " << cantidadVendida << endl;
+        cout << endl;
+    }
+    system("pause");	
 }
 
 void mostrarProductosPorPrecio(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta ){
-	if (numeroProducto == 0){
-        cout << "No hay productos agregados.\n" << endl;
-        system("pause");
-    } else {	
-		for (int i=0; numeroProducto-1 ; ++i)
-		{
-			for (int j=0; j < numeroProducto-1-i ; ++j)
-			{
-				if (articulo[j].precio > articulo[j+1].precio) 
-				{
-            	    producto temp = articulo[j];
-                	articulo[j] = articulo[j + 1];
-                	articulo[j + 1] = temp;
-            	}
-			
-			}                   
-    	}
-    	cout << "--- Productos ordenado por precio (Mayor a menor) ---" << endl;
-    	for (int i=numeroProducto-1 ; i >= 0 ; --i)
-    	{
-        	cout<<"ID del producto: "<<articulo[i].id<<", Nombre: "<<articulo[i].nombre<<", Precio: $"<<articulo[i].precio<<", Cantidad: "<<articulo[i].cantidad<<endl; 
-        	int cantidadVendida = 0;
-        	for (int j = 0; j < numeroVenta; ++j){
-            	if (ventas[j].nombreProducto == articulo[i].nombre){
-            	cantidadVendida += ventas[j].cantidad;
-            	}
-            cout<<"Cantidad vendida: " <<cantidadVendida<<endl;
-        	cout<< endl;
-        	}       
-        	system("pause");   
-		}
-	}
+		
+	for (int i = 0; i < numeroProducto ; ++i) {
+        for (int j = 0; j < numeroProducto ; ++j) {
+            if (articulo[j].precio < articulo[j + 1].precio) {
+                producto temp = articulo[j];
+                articulo[j] = articulo[j + 1];
+                articulo[j + 1] = temp;
+            }
+        }
+    }
+
+    cout << "--- Productos ordenados por precio (Mayor a menor) ---" << endl;
+    for (int i = 0; i < numeroProducto; ++i) {
+        cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad << endl;
+        int cantidadVendida = 0;
+        for (int j = 0; j < numeroVenta; ++j) {
+            if (ventas[j].nombreProducto == articulo[i].nombre) {
+                cantidadVendida += ventas[j].cantidad;
+            }
+        }
+        cout << "Cantidad vendida: " << cantidadVendida << endl;
+        cout << endl;
+    }
+    system("pause");
 }
+	
+
 
 
 void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
@@ -359,4 +351,154 @@ void mostrarDescuentos(const descuento descuentos[], int numeroDescuentos) {
             <<", Cantidad para el descuento: "<<descuentos[i].cantidadMinima//cantidad minima para el descuento
             <<", Porcentaje del descuento: "<<descuentos[i].porcentaje<<"%"<<endl;//Descuento registrado previamente
     }
+}
+
+
+void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuentos, gestionDeventas ventas[], int &numeroVenta) {
+    // Inicializar productos predefinidos
+    articulo[0].id = 1;
+    articulo[0].nombre = "Smartphone";
+    articulo[0].precio = 800;
+    articulo[0].cantidad = 25;
+
+    articulo[1].id = 2;
+    articulo[1].nombre = "Laptop";
+    articulo[1].precio = 1200;
+    articulo[1].cantidad = 10;
+
+    articulo[2].id = 3;
+    articulo[2].nombre = "Tablet";
+    articulo[2].precio = 600;
+    articulo[2].cantidad = 15;
+
+    articulo[3].id = 4;
+    articulo[3].nombre = "Smartwatch";
+    articulo[3].precio = 300;
+    articulo[3].cantidad = 30;
+
+    articulo[4].id = 5;
+    articulo[4].nombre = "Auriculares Bluetooth";
+    articulo[4].precio = 150;
+    articulo[4].cantidad = 50;
+
+    articulo[5].id = 6;
+    articulo[5].nombre = "Teclado Mecanico";
+    articulo[5].precio = 100;
+    articulo[5].cantidad = 20;
+
+    articulo[6].id = 7;
+    articulo[6].nombre = "Monitor 4K";
+    articulo[6].precio = 400;
+    articulo[6].cantidad = 8;
+
+    articulo[7].id = 8;
+    articulo[7].nombre = "Camara DSLR";
+    articulo[7].precio = 700;
+    articulo[7].cantidad = 5;
+
+    articulo[8].id = 9;
+    articulo[8].nombre = "Impresora 3D";
+    articulo[8].precio = 1000;
+    articulo[8].cantidad = 3;
+
+    articulo[9].id = 10;
+    articulo[9].nombre = "Router Wi-Fi";
+    articulo[9].precio = 200;
+    articulo[9].cantidad = 25;
+
+    numeroProducto = 10;
+
+    // Inicializar quejas predefinidas
+    quejas[0].id = 1;
+    quejas[0].descripcion = "Falla en el sistema operativo del Smartphone";
+
+    quejas[1].id = 2;
+    quejas[1].descripcion = "Pantalla rota de la Tablet";
+
+    quejas[2].id = 3;
+    quejas[2].descripcion = "Entrega retrasada del Monitor 4K";
+
+    quejas[3].id = 4;
+    quejas[3].descripcion = "Bateria de la Laptop no dura lo suficiente";
+
+    quejas[4].id = 5;
+    quejas[4].descripcion = "Auriculares Bluetooth con baja calidad de sonido";
+
+    numeroReclamo = 5;
+
+    // Inicializar descuentos predefinidos
+    descuentos[0].precioMinimo=100;
+    descuentos[0].cantidadMinima = 2;
+    descuentos[0].porcentaje = 10;
+
+    descuentos[1].precioMinimo = 1000;
+    descuentos[1].cantidadMinima = 1;
+    descuentos[1].porcentaje = 15;
+
+    descuentos[2].precioMinimo = 150;
+    descuentos[2].cantidadMinima = 3;
+    descuentos[2].porcentaje = 5;
+
+    descuentos[3].precioMinimo = 2000;
+    descuentos[3].cantidadMinima = 1;
+    descuentos[3].porcentaje = 20;
+
+    descuentos[4].precioMinimo = 300;
+    descuentos[4].cantidadMinima = 5;
+    descuentos[4].porcentaje = 7;
+
+    numeroDescuentos = 5;
+
+    // Inicializar ventas predefinidas
+    ventas[0].id = 1;
+    ventas[0].nombreProducto = "Smartphone";
+    ventas[0].cantidad = 2;
+    ventas[0].precioTotal = 1440; // Descuento aplicado: 160 (10%)
+
+    ventas[1].id = 2;
+    ventas[1].nombreProducto = "Laptop";
+    ventas[1].cantidad = 1;
+    ventas[1].precioTotal = 1020; // Descuento aplicado: 180 (15%)
+
+    ventas[2].id = 3;
+    ventas[2].nombreProducto = "Tablet";
+    ventas[2].cantidad = 3;
+    ventas[2].precioTotal = 1710; // Descuento aplicado: 90 (5%)
+
+    ventas[3].id = 4;
+    ventas[3].nombreProducto = "Smartwatch";
+    ventas[3].cantidad= 2;
+    ventas[3].precioTotal = 600; // Sin descuento
+
+    ventas[4].id = 5;
+    ventas[4].nombreProducto = "Auriculares Bluetooth";
+    ventas[4].cantidad = 5;
+    ventas[4].precioTotal = 712.5; // Descuento aplicado: 37.5 (5%)
+
+    ventas[5].id = 6;
+    ventas[5].nombreProducto = "Teclado Mecánico";
+    ventas[5].cantidad= 4;
+    ventas[5].precioTotal = 400; // Sin descuento
+
+    ventas[6].id = 7;
+    ventas[6].nombreProducto = "Monitor 4K";
+    ventas[6].cantidad = 1;
+    ventas[6].precioTotal = 320; // Descuento aplicado: 80 (20%)
+
+    ventas[7].id = 8;
+    ventas[7].nombreProducto = "Camara DSLR";
+    ventas[7].cantidad = 1;
+    ventas[7].precioTotal = 700; // Sin descuento
+
+    ventas[8].id = 9;
+    ventas[8].nombreProducto = "Impresora 3D";
+    ventas[8].cantidad = 1;
+    ventas[8].precioTotal = 800; // Descuento aplicado: 200 (20%)
+
+    ventas[9].id = 10;
+    ventas[9].nombreProducto = "Router Wi-Fi";
+    ventas[9].cantidad = 3;
+    ventas[9].precioTotal = 570; // Descuento aplicado: 30 (5%)
+
+    numeroVenta = 10;
 }

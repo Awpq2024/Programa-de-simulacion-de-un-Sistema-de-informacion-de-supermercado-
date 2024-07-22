@@ -1,6 +1,6 @@
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
-
+  
 //Cantidades maximas de las estructuras
 const int maximosProductos=100;
 const int maximasVentas=100;
@@ -33,6 +33,5 @@ struct descuento//Estructura de los descuentos
     int cantidadMinima;//Cantidad necesaria para el descuento
     float porcentaje;//Porcentaje del descuento
 };
-
 #endif
 
