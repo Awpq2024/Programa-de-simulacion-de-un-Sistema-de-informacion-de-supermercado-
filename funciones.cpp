@@ -72,7 +72,7 @@ void mostrarProductosAlfabeticamente(producto articulo[], int numeroProducto, co
                 cantidadVendida += ventas[j].cantidad;
             }
         }
-        cout << "Cantidad vendida: " << cantidadVendida ;
+        cout << "Cantidad vendida: " << cantidadVendida <<endl ;
         cout << endl;
     }
     system("pause");	
@@ -322,7 +322,7 @@ void eliminarDescuento(descuento descuentos[], int &numeroDescuentos){
     cout<<"Ingrese el ID del descuento a eliminar: ";
     cin>>idAuxiliar;
     bool encontrado=false;//Se crea un variable para indicar si el descuento fue encontrado
-    for (int i=1;i<numeroDescuentos;++i){
+    for (int i=0;i<numeroDescuentos;++i){
         if (descuentos[i].id==idAuxiliar){//Se verifica si el id ingresado coincide con el id del for
             for (int j=i;j<numeroDescuentos-1;++j){//se usa un for para reordenar el arreglo de las estructuras
                 descuentos[j]=descuentos[j+1];
