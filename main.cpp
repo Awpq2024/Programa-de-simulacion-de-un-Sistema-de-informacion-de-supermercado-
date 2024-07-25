@@ -13,15 +13,15 @@ descuento descuentos[maximosDescuentos];
 //Se inicializan los numeros de distintas estructuras en 0
 int numeroProducto=10;
 int numeroVenta=10;
-int numeroReclamo=0;
-int numeroDescuentos=0;
+int numeroReclamo=5;
+int numeroDescuentos=5;
 
 
 int main() {
 	//Se inicializan los ID para las estructuras de producto, reclamo y descuento
     int siguienteID=11;
-	int siguienteIDReclamo=1;
-	int siguienteIDDescuento=1;
+	int siguienteIDReclamo=6;
+	int siguienteIDDescuento=6;
     int opcion;//se crea la variable opcion
     
     // Inicializar productos predefinidos

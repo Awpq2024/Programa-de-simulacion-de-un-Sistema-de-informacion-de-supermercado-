@@ -33,6 +33,5 @@ struct descuento//Estructura de los descuentos
     int cantidadMinima;//Cantidad necesaria para el descuento
     float porcentaje;//Porcentaje del descuento
 };
-
 #endif
 
