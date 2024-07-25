@@ -72,7 +72,7 @@ void mostrarProductosAlfabeticamente(producto articulo[], int numeroProducto, co
                 cantidadVendida += ventas[j].cantidad;
             }
         }
-        cout << "Cantidad vendida: " << cantidadVendida << endl;
+        cout << "Cantidad vendida: " << cantidadVendida ;
         cout << endl;
     }
     system("pause");	
@@ -322,7 +322,7 @@ void eliminarDescuento(descuento descuentos[], int &numeroDescuentos){
     cout<<"Ingrese el ID del descuento a eliminar: ";
     cin>>idAuxiliar;
     bool encontrado=false;//Se crea un variable para indicar si el descuento fue encontrado
-    for (int i=0;i<numeroDescuentos;++i){
+    for (int i=1;i<numeroDescuentos;++i){
         if (descuentos[i].id==idAuxiliar){//Se verifica si el id ingresado coincide con el id del for
             for (int j=i;j<numeroDescuentos-1;++j){//se usa un for para reordenar el arreglo de las estructuras
                 descuentos[j]=descuentos[j+1];
@@ -427,22 +427,27 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     numeroReclamo = 5;
 
     // Inicializar descuentos predefinidos
+    descuentos[0].id=1;
     descuentos[0].precioMinimo=100;
     descuentos[0].cantidadMinima = 2;
     descuentos[0].porcentaje = 10;
 
+	descuentos[1].id=2;
     descuentos[1].precioMinimo = 1000;
     descuentos[1].cantidadMinima = 1;
     descuentos[1].porcentaje = 15;
 
+	descuentos[2].id=3;
     descuentos[2].precioMinimo = 150;
     descuentos[2].cantidadMinima = 3;
     descuentos[2].porcentaje = 5;
 
+	descuentos[3].id=4;
     descuentos[3].precioMinimo = 2000;
     descuentos[3].cantidadMinima = 1;
     descuentos[3].porcentaje = 20;
 
+	descuentos[4].id=5;
     descuentos[4].precioMinimo = 300;
     descuentos[4].cantidadMinima = 5;
     descuentos[4].porcentaje = 7;

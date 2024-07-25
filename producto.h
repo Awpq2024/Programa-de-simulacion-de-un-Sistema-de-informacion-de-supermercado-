@@ -1,6 +1,6 @@
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
-  
+
 //Cantidades maximas de las estructuras
 const int maximosProductos=100;
 const int maximasVentas=100;
