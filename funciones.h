@@ -1,7 +1,10 @@
 #ifndef FUNCIONES_H
 #define FUNCIONES_H
 #include <iostream>
+#include <windows.h>
 #include "producto.h"
+
+void setColor(int color);
 void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuento,gestionDeventas ventas[], int &numeroVenta);
 
 //Funciones de productos
