@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <windows.h>
 #include "producto.h"
 #include "funciones.h"
 using namespace std;
@@ -30,23 +31,48 @@ int main() {
 
     do {//El menu se repite hasta elegir la opcion "6" del do while
     	system("cls");
-        cout<<"--- Supermercado ---"<<endl;
-        cout<<"1. Agregar producto"<<endl;
-        cout<<"2. Mostrar productos agregados"<<endl;      
-        cout<<"3. Ventas realizadas"<<endl;
-        cout<<"4. Menu de Reclamos (Agregar, Eliminar, Mostrar)"<<endl;
-        cout<<"5. Menu de Descuentos"<<endl;
-        cout<<"6. Salir del programa"<<endl;
-        cout<<"Ingrese una opcion: ";
+    	setColor(14);
+    	cout<<"==============================="<<endl;
+    	setColor(14);
+        cout<<"||        ";
+        setColor(15);
+		cout<<"Supermercado";
+		setColor(14);
+		cout<<"       ||"<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(14);
+        cout<<"1.";
+        setColor(7);
+		cout<<" Mostrar Inventario"<<endl;
+		setColor(14);
+        cout<<"2.";
+        setColor(7);
+		cout<<" Gestionar Productos"<<endl;
+		setColor(14);      
+        cout<<"3.";
+        setColor(7);
+		cout<<" Gestionar Ventas"<<endl;
+		setColor(14);
+        cout<<"4."; 
+		setColor(7);
+		cout<<" Gestionar Reclamos"<<endl;
+		setColor(14);
+        cout<<"5.";
+        setColor(7);
+		cout<<" Gestionar Descuentos"<<endl;
+		setColor(14);
+        cout<<"6.";
+		setColor(7);
+		cout<<" Salir del programa"<<endl;
+		setColor(14);
+        cout<<"Seleccione la opcion a ejecutar: ";
+        setColor(15);
         cin>>opcion;//se introdusce la opcion para usarla en el switch
 
         switch (opcion){//se usa un switch para comparar la opcion ingresada con las disponibles
-            case 1://Se llama a la funcion que permite agregar un producto
-            	system("cls");
-                agregarProducto(articulo, numeroProducto, siguienteID);
-                break;
-                
-            case 2://Se hace un sub menu para mostrar los productos predefinidos  y los registrados
+    
+            case 1://Se hace un sub menu para mostrar los productos predefinidos  y los registrados
             	int opcionMostrarProductos;
             	do{
             		system("cls");
@@ -81,6 +107,11 @@ int main() {
 					}
 				}while(opcionMostrarProductos!=4);
 				break;
+			case 2://Se llama a la funcion que permite agregar un producto
+            	system("cls");
+                agregarProducto(articulo, numeroProducto, siguienteID);
+                break;
+                
             case 3:// se despliega un Menu secundario que permite Gestionar las ventas
             	int opcionVentas;
             	do{

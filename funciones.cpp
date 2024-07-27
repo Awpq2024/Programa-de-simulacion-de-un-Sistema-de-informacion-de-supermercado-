@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <windows.h>
 #include "funciones.h"
 #include "producto.h"
 using namespace std;
@@ -111,11 +112,14 @@ void mostrarProductosPorPrecio(producto articulo[], int numeroProducto, const ge
 void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
     if (numeroVenta < maximasVentas) {
         gestionDeventas temporal;
+        bool productoEncontrado = false;
+        
         cout << "Ingrese el nombre del producto: ";
         cin >> temporal.nombreProducto;
 
         for (int i = 0; i < numeroProducto; i++) {
             if (temporal.nombreProducto == articulo[i].nombre) {
+            	bool productoEncontrado = true;
                 cout << "Ingrese la cantidad: ";
                 cin >> temporal.cantidad;
 
@@ -123,10 +127,16 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
                 	temporal.id = articulo[i].id;
                     ventas[numeroVenta] = temporal;
                     articulo[i].cantidad -= temporal.cantidad;
+                    
                     float precioSinDescuento = temporal.cantidad * articulo[i].precio;
-                    float descuento = calcularDescuento(precioSinDescuento, temporal.cantidad, descuentos, numeroDescuentos);
-                    ventas[numeroVenta].precioTotal = temporal.cantidad * articulo[i].precio;
-                    cout << "El precio total es: $" << ventas[numeroVenta].precioTotal<<"con un descuento de: "<<descuento<<endl;
+                    float descuentoAplicado = calcularDescuento(precioSinDescuento, temporal.cantidad, descuentos, numeroDescuentos);
+                    float precioTotalConDescuento = precioSinDescuento - descuentoAplicado;
+
+                    ventas[numeroVenta].precioTotal = precioTotalConDescuento;
+
+                    cout << "El precio sin descuento es: $" << precioSinDescuento << endl;
+                    cout << "El descuento aplicado es: $" << descuentoAplicado << endl;
+                    cout << "El precio total con descuento es: $" << precioTotalConDescuento << endl;
                     cout << "Venta registrada correctamente." << endl;
                     numeroVenta++;
                 } else {
@@ -134,6 +144,10 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
                 }
                 break;
             }
+        }
+        if (!productoEncontrado) {
+            cout << "Producto no encontrado en el inventario." << endl;
+            cout << "Verifique la lista de productos disponibles" << endl;
         }
     } else {
         cout << "Limite de ventas alcanzados." << endl;
@@ -506,4 +520,8 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     ventas[9].precioTotal = 570; // Descuento aplicado: 30 (5%)
 
     numeroVenta = 10;
+}
+
+void setColor(int color) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
