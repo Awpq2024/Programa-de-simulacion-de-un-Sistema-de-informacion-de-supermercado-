@@ -13,7 +13,7 @@ descuento descuentos[maximosDescuentos];
 
 //Se inicializan los numeros de distintas estructuras en 0
 int numeroProducto=37;
-int numeroVenta=5;
+int numeroVenta=8;
 int numeroReclamo=5;
 int numeroDescuentos=5;
 
