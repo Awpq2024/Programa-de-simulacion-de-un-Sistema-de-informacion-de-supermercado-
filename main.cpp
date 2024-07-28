@@ -13,7 +13,7 @@ descuento descuentos[maximosDescuentos];
 
 //Se inicializan los numeros de distintas estructuras en 0
 int numeroProducto=37;
-int numeroVenta=8;
+int numeroVenta=5;
 int numeroReclamo=5;
 int numeroDescuentos=5;
 
@@ -67,7 +67,7 @@ int main() {
 		setColor(7);
 		cout<<" Salir del programa"<<endl;
 		setColor(14);
-		cout<<" Ingrese una opcion: ";
+		cout<<endl<<"-> Ingrese una opcion: ";
         setColor(15);
         cin>>opcion;//se introduce la opcion para usarla en el switch
 
@@ -97,7 +97,9 @@ int main() {
                 cout<<"Saliendo del programa..."<<endl;
                 break;
             default://Se muestra un mensaje de error al no coincidir la opcion elegida con las disponibles en el menu, y se reinicia el programa
-                cout<<endl<<"Opcion no valida."<<endl<<endl;
+                setColor(12);
+				cout<<endl<<"*** OPCION NO VALIDA."<<endl;
+				setColor(15);
                 system("pause");   
 		}
     	
