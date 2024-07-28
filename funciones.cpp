@@ -2,161 +2,311 @@
 #include <string>
 #include <windows.h>
 #include "funciones.h"
-#include "producto.h"
+#include "estructuras.h"
 using namespace std;
 
-void buscarProducto(producto articulo[], int& numeroProducto, const gestionDeventas ventas[], int& numeroVenta)
-{
-	int escribirIdDelProducto;
-	cout<<"Digite el ID del producto: ";
-	cin>>escribirIdDelProducto;
-	producto buscarID;
-	int encontrar = false;
-		for(int i=0; i < numeroProducto ; i++)
-		{
-			if(escribirIdDelProducto==articulo[i].id)
-			{
-				buscarID=articulo[i];
-				encontrar = true;
-				break;
-			}
-		}
-	if(encontrar)
-	{
-		
-            cout<<"ID del producto: "<<buscarID.id<<", Nombre: "<<buscarID.nombre<<", Precio: $"<<buscarID.precio<<", Cantidad: "<<buscarID.cantidad<<endl; 
-            int cantidadVendida = 0;
-            for (int j = 0; j < numeroVenta; ++j){
-                if (ventas[j].id==buscarID.id){
-                    cantidadVendida += ventas[j].cantidad;
-                }
-            }
-            cout<<"Cantidad vendida: " <<cantidadVendida<<endl;
-            cout<< endl;
-        
-        system("pause"); 		
-	}
-	else
-	{
-		cout<<"No se encontro el producto. ";
-		
-	}
-}
-void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID){
-    if (numeroProducto<maximosProductos){
-    	int opcion;
-        producto auxiliar;
-        cout<<"Ingrese el nombre del producto: ";
-        cin>>auxiliar.nombre;
-        cout<<"Ingrese el precio del producto: ";
-        cin>>auxiliar.precio;
-        cout<<"Ingrese la cantidad del producto: ";
-        cin>>auxiliar.cantidad;
-        auxiliar.id=siguienteID++;
-        articulo[numeroProducto++]=auxiliar;
-        cout<<endl<<"Producto agregado correctamente.\n"<<endl;
-        cout<<endl;
-		system("pause");
-    } else {
-        cout<<"Limite de productos alcanzados."<<endl;
-    }
-}
-
-void mostrarProductos(const producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta){
-   if (numeroProducto == 0){
-        cout << "No hay productos agregados.\n" << endl;
-        system("pause");
-    } else {
-        cout << "--- Productos agregados ---" << endl;
-        for (int i = 0; i < numeroProducto; ++i){
-            cout<<"ID del producto: "<<articulo[i].id<<", Nombre: "<<articulo[i].nombre<<", Precio: $"<<articulo[i].precio<<", Cantidad: "<<articulo[i].cantidad<<endl; 
-            int cantidadVendida = 0;
-            for (int j = 0; j < numeroVenta; ++j){
-                if (ventas[j].nombreProducto == articulo[i].nombre){
-                    cantidadVendida += ventas[j].cantidad;
-                }
-            }
-            cout<<"Cantidad vendida: " <<cantidadVendida<<endl;
-            cout<< endl;
+void menuProductosCategorias(producto articulo[], int& numeroProducto, int& siguienteID,  gestionDeventas ventas[], int& numeroVenta, string& categoria){
+	int opcionCategorias;
+	do {//El menu se repite hasta elegir la opcion "6" del do while
+    	system("cls");
+        cout<<"--- Supermercado-Categorias---"<<endl;
+        cout<<"1. Vestimenta"<<endl;
+        cout<<"2. Lacteos"<<endl;
+		cout<<"3. Mobiliario"<<endl; 
+		cout<<"4. Alimentos y Bebidas"<<endl; 
+		cout<<"5. Limpieza e Higiene"<<endl; 
+		cout<<"6. Automotriz"<<endl; 
+		cout<<"7. Mascotas"<<endl;
+		cout<<"8. Electrodomesticos"<<endl;
+		cout<<"9. Electronica y Tecnologia"<<endl;
+		cout<<"10. Volver al menu principal"<<endl;
+        cout<<"Ingrese una opcion: ";
+        cin>>opcionCategorias;//se introdusce la opcion para usarla en el switch
+		if (opcionCategorias>=1 && opcionCategorias<=9){
+					    switch(opcionCategorias){
+			        		case 1: categoria="Vestimenta"; break;
+			        		case 2: categoria="Lacteos"; break;
+			       			case 3: categoria="Mobiliario"; break;
+			 		        case 4: categoria="Alimentos y Bebidas"; break;
+			    		    case 5: categoria="Limpieza e Higiene"; break;
+			    		    case 6: categoria="Automotriz"; break;
+			    		    case 7: categoria="Mascotas"; break;
+			    		    case 8: categoria="Electrodomesticos"; break;
+			    		    case 9: categoria="Electronica y Tecnologia"; break;
+        		}
+                funcionesDelMenuDeCategorias(articulo, numeroProducto, siguienteID, ventas, numeroVenta,categoria);
         }
-        system("pause");    
-    }
+
+    } while(opcionCategorias!=10);
 }
 
-void mostrarProductosAlfabeticamente(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta){
-	
-	for (int i = 0; i < numeroProducto ; ++i)
-    {
-        for (int j = 0; j < numeroProducto ; ++j)
-        {
-            if (articulo[j].nombre < articulo[j+1].nombre) 
-            {
-                producto temp = articulo[j];
-                articulo[j] = articulo[j + 1];
-                articulo[j + 1] = temp;
-            }
-        }                   
-    }
+void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int& siguienteID, gestionDeventas ventas[], int& numeroVenta,const string& categoria) {
+    int opcionesFunciones;
+    do { // El menu se repite hasta elegir la opcion "3" del do while
+        system("cls");
+        cout << "--- Supermercado - Categorias ---" << endl;
+        cout << "1. Agregar producto" << endl;
+        cout << "2. Mostrar productos agregados" << endl;
+        cout << "3. Salir del menu de categorias" << endl;
+        cout << "Ingrese una opcion: ";
+        cin >> opcionesFunciones;
 
-    cout << "--- Productos ordenados alfabeticamente ---" << endl;
-    for (int i = 0 ; i < numeroProducto ; ++i)
-    {
-        cout << "ID del producto: " << articulo[i].id<< ", Nombre: " << articulo[i].nombre<< ", Precio: $" << articulo[i].precio<< ", Cantidad: " << articulo[i].cantidad << endl; 
-        int cantidadVendida = 0;
-        for (int j = 0; j < numeroVenta; ++j)
-        {
-            if (ventas[j].nombreProducto == articulo[i].nombre)
-            {
-                cantidadVendida += ventas[j].cantidad;
-            }
+        switch (opcionesFunciones) {
+            case 1:
+                system("cls");
+                agregarProducto(articulo, numeroProducto, siguienteID,categoria);
+                break;
+            case 2:
+                system("cls");
+                menuDeMostrarProductos(articulo, numeroProducto, ventas, numeroVenta,categoria);
+                break;
+            case 3:
+                cout << "Saliendo del menu de categorias..." << endl;
+                break;
+            default:
+                cout << endl << "Opcion no valida." << endl << endl;
+                system("pause");
         }
-        cout << "Cantidad vendida: " << cantidadVendida <<endl ;
-        cout << endl;
-    }
-    system("pause");	
+
+    } while (opcionesFunciones != 3);
 }
 
-void mostrarProductosPorPrecio(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta ){
-		
-	for (int i = 0; i < numeroProducto ; ++i) {
-        for (int j = 0; j < numeroProducto ; ++j) {
-            if (articulo[j].precio < articulo[j + 1].precio) {
-                producto temp = articulo[j];
-                articulo[j] = articulo[j + 1];
-                articulo[j + 1] = temp;
-            }
+void buscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
+    int escribirIdDelProducto;
+    cout << "Digite el ID del producto: ";
+    cin >> escribirIdDelProducto;
+    producto buscarID;
+    bool encontrar = false;
+    for (int i = 0; i < numeroProducto; i++) {
+        if (escribirIdDelProducto == articulo[i].id) {
+            buscarID = articulo[i];
+            encontrar = true;
+            break;
         }
     }
-
-    cout << "--- Productos ordenados por precio (Mayor a menor) ---" << endl;
-    for (int i = 0; i < numeroProducto; ++i) {
-        cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad << endl;
+    if (encontrar) {
+        cout << "ID del producto: " << buscarID.id << ", Nombre: " << buscarID.nombre
+             << ", Precio: $" << buscarID.precio << ", Cantidad: " << buscarID.cantidad << endl;
         int cantidadVendida = 0;
         for (int j = 0; j < numeroVenta; ++j) {
-            if (ventas[j].nombreProducto == articulo[i].nombre) {
+            if (ventas[j].id == buscarID.id) {
                 cantidadVendida += ventas[j].cantidad;
             }
         }
         cout << "Cantidad vendida: " << cantidadVendida << endl;
         cout << endl;
+    } else {
+        cout << "No se encontro el producto." << endl;
     }
     system("pause");
 }
-	
+
+void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria) {
+    if (numeroProducto < maximosProductos) {
+        producto auxiliar;
+        cout << "Ingrese el nombre del producto: ";
+        cin.ignore();
+        getline(cin,auxiliar.nombre);
+        cout << "Ingrese el precio del producto: ";
+        cin >> auxiliar.precio;
+        cout << "Ingrese la cantidad del producto: ";
+        cin >> auxiliar.cantidad;
+        auxiliar.id = siguienteID++;
+        auxiliar.categoria=categoria;
+        articulo[numeroProducto++] = auxiliar;
+        cout << endl << "Producto agregado correctamente." << endl;
+        system("pause");
+    } else {
+        cout << "Limite de productos alcanzado." << endl;
+        system("pause");
+    }
+}
+
+void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria ) {
+    int opcionMostrar;
+    do {
+        system("cls");
+        cout << "Menu de Mostrar Productos:" << endl;
+        cout << "1. Mostrar productos" << endl;
+        cout << "2. Mostrar productos alfabeticamente" << endl;
+        cout << "3. Mostrar productos por precio" << endl;
+        cout << "4. Volver al menu principal" << endl;
+        cout << "Ingrese una opcion: ";
+        cin >> opcionMostrar;
+
+        switch (opcionMostrar) {
+            case 1:
+                system("cls");
+                mostrarProductos(articulo, numeroProducto, ventas, numeroVenta, categoria);
+                system("pause");
+                break;
+            case 2:
+                system("cls");
+                mostrarProductosAlfabeticamente(articulo, numeroProducto, ventas, numeroVenta, categoria);
+                system("pause");
+                break;
+            case 3:
+                system("cls");
+                mostrarProductosPorPrecio(articulo, numeroProducto, ventas, numeroVenta, categoria);
+                system("pause");
+                break;
+            case 4:
+                cout << "Volviendo al menu principal..." << endl;
+                break;
+            default:
+                cout << "Opcion no valida, intente de nuevo." << endl;
+                system("pause");
+        }
+    } while (opcionMostrar != 4);
+}
+
+void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria) {
+    if (numeroProducto == 0) {
+        cout << "No hay productos agregados." << endl;
+        system("pause");
+    } else {
+        cout << "--- Productos agregados ---" << endl;
+        for (int i = 0; i < numeroProducto; ++i) {
+        	 if (articulo[i].categoria == categoria){
+	            cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre
+	                 << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad <<", Categoria: "<<articulo[i].categoria<<endl;
+	            int cantidadVendida = 0;
+	            for (int j = 0; j < numeroVenta; ++j) {
+	                if (ventas[j].nombreProducto == articulo[i].nombre) {
+	                    cantidadVendida += ventas[j].cantidad;
+	                }
+	            }
+	            cout << "Cantidad vendida: " << cantidadVendida << endl;
+	            cout << endl;
+        	}    
+    	}
+	}
+}
+
+void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria) {
+    if (numeroProducto == 0) {
+        cout << "No hay productos agregados." << endl;
+        system("pause");
+    } else {
+        // Implementación de la ordenación alfabética
+        for (int i = 0; i < numeroProducto - 1; ++i) {
+            for (int j = i + 1; j < numeroProducto; ++j) {
+                if (articulo[i].nombre > articulo[j].nombre) {
+                    // Intercambiar productos
+                    producto temp = articulo[i];
+                    articulo[i] = articulo[j];
+                    articulo[j] = temp;
+                }
+            }
+        }
+
+        cout << "--- Productos ordenados alfabeticamente ---" << endl;
+        for (int i = 0; i < numeroProducto; ++i) {
+            cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre
+                 << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad <<", Categoria: "<<articulo[i].categoria<<endl;
+            int cantidadVendida = 0;
+            for (int j = 0; j < numeroVenta; ++j) {
+                if (ventas[j].nombreProducto == articulo[i].nombre) {
+                    cantidadVendida += ventas[j].cantidad;
+                }
+            }
+            cout << "Cantidad vendida: " << cantidadVendida << endl;
+            cout << endl;
+        }
+        
+    }
+}
+
+void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria) {
+    if (numeroProducto == 0) {
+        cout << "No hay productos agregados." << endl;
+        system("pause");
+    } else {
+        // Ordenar productos por precio (de menor a mayor)
+        for (int i = 0; i < numeroProducto - 1; ++i) {
+            for (int j = i + 1; j < numeroProducto; ++j) {
+                if (articulo[i].precio > articulo[j].precio) {
+                    // Intercambiar productos
+                    producto temp = articulo[i];
+                    articulo[i] = articulo[j];
+                    articulo[j] = temp;
+                }
+            }
+        }
+
+        cout << "--- Productos ordenados por precio ---" << endl;
+        for (int i = 0; i < numeroProducto; ++i) {
+            cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre
+                 << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad <<", Categoria: "<<articulo[i].categoria<<endl;
+            int cantidadVendida = 0;
+            for (int j = 0; j < numeroVenta; ++j) {
+                if (ventas[j].nombreProducto == articulo[i].nombre) {
+                    cantidadVendida += ventas[j].cantidad;
+                }
+            }
+            cout << "Cantidad vendida: " << cantidadVendida << endl;
+            cout << endl;
+        }
+    
+    }
+}
+
+void menuDeVentas(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
+    int opcionVentas;
+    do{
+    	system("cls");
+		cout<<"1. Registrar una venta "<<endl;
+    	cout<<"2. Mostrar ventas"<<endl;
+    	cout<<"3. Mostrar ganancias"<<endl;
+    	cout<<"4. Producto mas vendido"<<endl;
+    	cout<<"5. Volver al menu principal "<<endl;
+    	cout<<"Ingrese una opcion: ";
+    	cin>>opcionVentas;
+    		
+    	switch(opcionVentas)
+    	{
+    		case 1://llama a la funcion que permite registrar una venta,actualiza el inventario, y aplica los descuentos si es necesario
+    		system("cls");
+    		registrarVenta(ventas, numeroVenta, articulo, numeroProducto, descuentos, numeroDescuentos);
+    		break;
+    		 
+    		case 2://llama a la funcion que muestra las ventas realizadas
+    		system("cls");
+    		mostrarVentas(ventas, numeroVenta);
+    		 
+    		break;
+    		case 3://Se llama a la funcion que muestra las ganancias 
+    		system("cls");
+    		mostrarGanancias(ventas, numeroVenta);
+    	 
+    		break;  
+			case 4:
+		    system("cls");
+			productoMasVendido(ventas, numeroVenta, articulo, numeroProducto);
+			 
+    		break;
+			case 5://Se vuelve al menu principal
+			cout<<"Volviendo al menu principal..."<<endl;
+            break; 			
+            default://Se muestra un mensaje de error al no 
+            cout<<endl<<"Opcion no valida."<<endl<<endl;
+            system("pause");
+            break;
+    	}
+	}while(opcionVentas!=5);//El menu de ventas
+			
+}	
 
 
 
 void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
     if (numeroVenta < maximasVentas) {
         gestionDeventas temporal;
-        bool productoEncontrado = false;
-        
         cout << "Ingrese el nombre del producto: ";
         cin >> temporal.nombreProducto;
 
         for (int i = 0; i < numeroProducto; i++) {
             if (temporal.nombreProducto == articulo[i].nombre) {
-            	bool productoEncontrado = true;
                 cout << "Ingrese la cantidad: ";
                 cin >> temporal.cantidad;
 
@@ -164,16 +314,10 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
                 	temporal.id = articulo[i].id;
                     ventas[numeroVenta] = temporal;
                     articulo[i].cantidad -= temporal.cantidad;
-                    
                     float precioSinDescuento = temporal.cantidad * articulo[i].precio;
-                    float descuentoAplicado = calcularDescuento(precioSinDescuento, temporal.cantidad, descuentos, numeroDescuentos);
-                    float precioTotalConDescuento = precioSinDescuento - descuentoAplicado;
-
-                    ventas[numeroVenta].precioTotal = precioTotalConDescuento;
-
-                    cout << "El precio sin descuento es: $" << precioSinDescuento << endl;
-                    cout << "El descuento aplicado es: $" << descuentoAplicado << endl;
-                    cout << "El precio total con descuento es: $" << precioTotalConDescuento << endl;
+                    float descuento = calcularDescuento(precioSinDescuento, temporal.cantidad, descuentos, numeroDescuentos);
+                    ventas[numeroVenta].precioTotal = temporal.cantidad * articulo[i].precio;
+                    cout << "El precio total es: $" << ventas[numeroVenta].precioTotal<<"con un descuento de: "<<descuento<<endl;
                     cout << "Venta registrada correctamente." << endl;
                     numeroVenta++;
                 } else {
@@ -182,17 +326,13 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
                 break;
             }
         }
-        if (!productoEncontrado) {
-            cout << "Producto no encontrado en el inventario." << endl;
-            cout << "Verifique la lista de productos disponibles" << endl;
-        }
     } else {
         cout << "Limite de ventas alcanzados." << endl;
     }
     system("pause");
 }
 
-void mostrarVentas(const gestionDeventas ventas[], int numeroVenta ){
+void mostrarVentas(gestionDeventas ventas[], int numeroVenta ){
 	if (numeroVenta==0){
         cout<<"No hay ventas registradas.\n"<<endl;
         system("pause");
@@ -204,6 +344,18 @@ void mostrarVentas(const gestionDeventas ventas[], int numeroVenta ){
         }
         system("pause");
     }	
+}
+void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
+{
+	int sumaTotal=0;
+	cout<<"La cantidad total de ventas realizadas: "<<numeroVenta<<endl;
+	for (int i=0; i<numeroVenta; i++ )
+	{
+		sumaTotal+=ventas[i].precioTotal;
+	}
+	cout<<"Ganancia total de las ventas realizadas: $ "<<sumaTotal<<endl;
+	cout<<endl;
+	system("pause");
 }
 void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto)
 {
@@ -241,19 +393,6 @@ void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto art
 	
 }
 
-void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
-{
-	int sumaTotal=0;
-	cout<<"La cantidad total de ventas realizadas: "<<numeroVenta<<endl;
-	for (int i=0; i<numeroVenta; i++ )
-	{
-		sumaTotal+=ventas[i].precioTotal;
-	}
-	cout<<"Ganancia total de las ventas realizadas: "<<sumaTotal<<endl;
-	cout<<endl;
-	system("pause");
-}
-
 void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo){
 	int opcionReclamo;
 	do {
@@ -289,7 +428,7 @@ void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo)
                 system("pause");
         }
     }while(opcionReclamo!=4);
-    return;
+ 
 }
 void agregarReclamo(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo){
     if (numeroReclamo<maximosReclamos){
@@ -380,7 +519,6 @@ void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguiente
                     break;
                     }
     }while(opcionDescuentos!=4);
-    return;
 }
 
 void agregarDescuento(descuento descuentos[], int &numeroDescuentos,int &siguienteIDDescuento){
@@ -441,59 +579,40 @@ void mostrarDescuentos(const descuento descuentos[], int numeroDescuentos) {
 }
 
 
-void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuentos, gestionDeventas ventas[], int &numeroVenta) {
+
+void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuentos, gestionDeventas ventas[], int &numeroVenta,const string& categoria) {
     // Inicializar productos predefinidos
     articulo[0].id = 1;
     articulo[0].nombre = "Smartphone";
     articulo[0].precio = 800;
+    articulo[0].categoria="Electronica y Tecnologia";
     articulo[0].cantidad = 25;
 
     articulo[1].id = 2;
     articulo[1].nombre = "Laptop";
     articulo[1].precio = 1200;
+    articulo[1].categoria="Electronica y Tecnologia";
     articulo[1].cantidad = 10;
 
     articulo[2].id = 3;
     articulo[2].nombre = "Tablet";
     articulo[2].precio = 600;
+    articulo[2].categoria="Electronica y Tecnologia";
     articulo[2].cantidad = 15;
 
     articulo[3].id = 4;
     articulo[3].nombre = "Smartwatch";
     articulo[3].precio = 300;
+    articulo[3].categoria="Electronica y Tecnologia";
     articulo[3].cantidad = 30;
 
     articulo[4].id = 5;
-    articulo[4].nombre = "Auriculares Bluetooth";
+    articulo[4].nombre = "Auriculares";
     articulo[4].precio = 150;
+    articulo[4].categoria="Electronica y Tecnologia";
     articulo[4].cantidad = 50;
 
-    articulo[5].id = 6;
-    articulo[5].nombre = "Teclado Mecanico";
-    articulo[5].precio = 100;
-    articulo[5].cantidad = 20;
-
-    articulo[6].id = 7;
-    articulo[6].nombre = "Monitor 4K";
-    articulo[6].precio = 400;
-    articulo[6].cantidad = 8;
-
-    articulo[7].id = 8;
-    articulo[7].nombre = "Camara DSLR";
-    articulo[7].precio = 700;
-    articulo[7].cantidad = 5;
-
-    articulo[8].id = 9;
-    articulo[8].nombre = "Impresora 3D";
-    articulo[8].precio = 1000;
-    articulo[8].cantidad = 3;
-
-    articulo[9].id = 10;
-    articulo[9].nombre = "Router Wi-Fi";
-    articulo[9].precio = 200;
-    articulo[9].cantidad = 25;
-
-    numeroProducto = 10;
+    numeroProducto = 5;
 
     // Inicializar quejas predefinidas
     quejas[0].id = 1;
@@ -563,36 +682,11 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     ventas[3].precioTotal = 600; // Sin descuento
 
     ventas[4].id = 5;
-    ventas[4].nombreProducto = "Auriculares Bluetooth";
+    ventas[4].nombreProducto = "Auriculares";
     ventas[4].cantidad = 5;
     ventas[4].precioTotal = 712.5; // Descuento aplicado: 37.5 (5%)
 
-    ventas[5].id = 6;
-    ventas[5].nombreProducto = "Teclado Mecánico";
-    ventas[5].cantidad= 4;
-    ventas[5].precioTotal = 400; // Sin descuento
-
-    ventas[6].id = 7;
-    ventas[6].nombreProducto = "Monitor 4K";
-    ventas[6].cantidad = 1;
-    ventas[6].precioTotal = 320; // Descuento aplicado: 80 (20%)
-
-    ventas[7].id = 8;
-    ventas[7].nombreProducto = "Camara DSLR";
-    ventas[7].cantidad = 1;
-    ventas[7].precioTotal = 700; // Sin descuento
-
-    ventas[8].id = 9;
-    ventas[8].nombreProducto = "Impresora 3D";
-    ventas[8].cantidad = 1;
-    ventas[8].precioTotal = 800; // Descuento aplicado: 200 (20%)
-
-    ventas[9].id = 10;
-    ventas[9].nombreProducto = "Router Wi-Fi";
-    ventas[9].cantidad = 3;
-    ventas[9].precioTotal = 570; // Descuento aplicado: 30 (5%)
-
-    numeroVenta = 10;
+    numeroVenta = 5;
 }
 
 void setColor(int color) {
