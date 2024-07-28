@@ -722,38 +722,240 @@ void mostrarDescuentos(const descuento descuentos[], int numeroDescuentos) {
 
 
 void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuentos, gestionDeventas ventas[], int &numeroVenta,const string& categoria) {
-    // Inicializar productos predefinidos
-    articulo[0].id = 1;
-    articulo[0].nombre = "Smartphone";
-    articulo[0].precio = 800;
-    articulo[0].categoria="Electronica y Tecnologia";
+
+	//productos predeterminados de la categoria vestimenta
+	articulo[0].id = 1;
+    articulo[0].nombre = "Zapatillas";
+    articulo[0].precio = 20;
+    articulo[0].categoria="Vestimenta";
     articulo[0].cantidad = 25;
 
     articulo[1].id = 2;
-    articulo[1].nombre = "Laptop";
-    articulo[1].precio = 1200;
-    articulo[1].categoria="Electronica y Tecnologia";
+    articulo[1].nombre = "Casaca";
+    articulo[1].precio = 50;
+    articulo[1].categoria="Vestimenta";
     articulo[1].cantidad = 10;
 
     articulo[2].id = 3;
-    articulo[2].nombre = "Tablet";
-    articulo[2].precio = 600;
-    articulo[2].categoria="Electronica y Tecnologia";
-    articulo[2].cantidad = 15;
+    articulo[2].nombre = "Pantalon";
+    articulo[2].precio = 30;
+    articulo[2].categoria="Vestimenta";
+    articulo[2].cantidad = 20;
 
     articulo[3].id = 4;
-    articulo[3].nombre = "Smartwatch";
-    articulo[3].precio = 300;
-    articulo[3].categoria="Electronica y Tecnologia";
+    articulo[3].nombre = "Blusa";
+    articulo[3].precio = 20;
+    articulo[3].categoria="Vestimenta";
     articulo[3].cantidad = 30;
+    
+    //productos predeterminados de la categoria Lacteos
+	articulo[4].id = 5;
+    articulo[4].nombre = "Mantequilla";
+    articulo[4].precio = 20;
+    articulo[4].categoria="Lacteos";
+    articulo[4].cantidad = 25;
 
-    articulo[4].id = 5;
-    articulo[4].nombre = "Auriculares";
-    articulo[4].precio = 150;
-    articulo[4].categoria="Electronica y Tecnologia";
-    articulo[4].cantidad = 50;
+    articulo[5].id = 6;
+    articulo[5].nombre = "Yogurt";
+    articulo[5].precio = 50;
+    articulo[5].categoria="Lacteos";
+    articulo[5].cantidad = 10;
 
-    numeroProducto = 5;
+    articulo[6].id = 7;
+    articulo[6].nombre = "Leche";
+    articulo[6].precio = 30;
+    articulo[6].categoria="Lacteos";
+    articulo[6].cantidad = 20;
+
+    articulo[7].id = 8;
+    articulo[7].nombre = "Quesa";
+    articulo[7].precio = 20;
+    articulo[7].categoria="Lacteos";
+    articulo[7].cantidad = 30;
+    
+    //productos predeterminados de la categoria Mobiliario
+	articulo[8].id = 9;
+    articulo[8].nombre = "Sillas";
+    articulo[8].precio = 20;
+    articulo[8].categoria="Mobiliario";
+    articulo[8].cantidad = 25;
+    
+    articulo[9].id = 10;
+    articulo[9].nombre = "Mesa";
+    articulo[9].precio = 50;
+    articulo[9].categoria="Mobiliario";
+    articulo[9].cantidad = 10;
+
+    articulo[10].id = 11;
+    articulo[10].nombre = "Sofa";
+    articulo[10].precio = 30;
+    articulo[10].categoria="Mobiliario";
+    articulo[10].cantidad = 20;
+
+    articulo[11].id = 12;
+    articulo[11].nombre = "Cama";
+    articulo[11].precio = 20;
+    articulo[11].categoria="Mobiliario";
+    articulo[11].cantidad = 30;
+    
+    //productos predeterminados de la categoria Alimentos y Bebidas
+	articulo[12].id = 13;
+    articulo[12].nombre = "Atun";
+    articulo[12].precio = 20;
+    articulo[12].categoria="Alimentos y Bebidas";
+    articulo[12].cantidad = 25;
+
+    articulo[13].id = 14;
+    articulo[13].nombre = "Gaseosa";
+    articulo[13].precio = 50;
+    articulo[13].categoria="Alimentos y Bebidas";
+    articulo[13].cantidad = 10;
+
+    articulo[14].id = 15;
+    articulo[14].nombre = "Jugo";
+    articulo[14].precio = 30;
+    articulo[14].categoria="Alimentos y Bebidas";
+    articulo[14].cantidad = 20;
+
+    articulo[15].id = 16;
+    articulo[15].nombre = "Ramen";
+    articulo[15].precio = 20;
+    articulo[15].categoria="Alimentos y Bebidas";
+    articulo[15].cantidad = 30;
+    
+    //productos predeterminados de la categoria Limpieza e Higiene
+	articulo[16].id = 17;
+    articulo[16].nombre = "Poett";
+    articulo[16].precio = 20;
+    articulo[16].categoria="Limpieza e Higiene";
+    articulo[16].cantidad = 25;
+
+    articulo[17].id = 18;
+    articulo[17].nombre = "Ayudin";
+    articulo[17].precio = 50;
+    articulo[17].categoria="Limpieza e Higiene";
+    articulo[17].cantidad = 10;
+
+    articulo[18].id = 19;
+    articulo[18].nombre = "Jabon";
+    articulo[18].precio = 30;
+    articulo[18].categoria="Limpieza e Higiene";
+    articulo[18].cantidad = 20;
+
+    articulo[19].id = 20;
+    articulo[19].nombre = "Shampoo";
+    articulo[19].precio = 20;
+    articulo[19].categoria="Limpieza e Higiene";
+    articulo[19].cantidad = 30;
+    
+    //productos predeterminados de la categoria Automotriz
+	articulo[20].id = 21;
+    articulo[20].nombre = "Llantas";
+    articulo[20].precio = 20;
+    articulo[20].categoria="Automotriz";
+    articulo[20].cantidad = 25;
+
+    articulo[21].id = 22;
+    articulo[21].nombre = "Lubricante";
+    articulo[21].precio = 50;
+    articulo[21].categoria="Automotriz";
+    articulo[21].cantidad = 10;
+
+    articulo[22].id = 23;
+    articulo[22].nombre = "Cintas";
+    articulo[22].precio = 30;
+    articulo[22].categoria="Automotriz";
+    articulo[22].cantidad = 20;
+
+    articulo[23].id = 24;
+    articulo[23].nombre = "Laminas";
+    articulo[23].precio = 20;
+    articulo[23].categoria="Automotriz";
+    articulo[23].cantidad = 30;
+	
+	//productos predeterminados de la categoria Mascotas
+	articulo[24].id = 25;
+    articulo[24].nombre = "Cepillo";
+    articulo[24].precio = 20;
+    articulo[24].categoria="Mascotas";
+    articulo[24].cantidad = 25;
+
+    articulo[25].id = 26;
+    articulo[25].nombre = "Ropa";
+    articulo[25].precio = 50;
+    articulo[25].categoria="Mascotas";
+    articulo[25].cantidad = 10;
+
+    articulo[26].id = 27;
+    articulo[26].nombre = "Comida";
+    articulo[26].precio = 30;
+    articulo[26].categoria="Mascotas";
+    articulo[26].cantidad = 20;
+
+    articulo[27].id = 28;
+    articulo[27].nombre = "Collares";
+    articulo[27].precio = 20;
+    articulo[27].categoria="Mascotas";
+    articulo[27].cantidad = 30;
+	
+	//productos predeterminados de la categoria Electrodomesticos
+	articulo[28].id = 29;
+    articulo[28].nombre = "Licuadora";
+    articulo[28].precio = 20;
+    articulo[28].categoria="Electrodomesticos";
+    articulo[28].cantidad = 25;
+
+    articulo[29].id = 30;
+    articulo[29].nombre = "Batidora";
+    articulo[29].precio = 50;
+    articulo[29].categoria="Electrodomesticos";
+    articulo[29].cantidad = 10;
+
+    articulo[30].id = 31;
+    articulo[30].nombre = "Aspiradora";
+    articulo[30].precio = 30;
+    articulo[30].categoria="Electrodomesticos";
+    articulo[30].cantidad = 20;
+
+    articulo[31].id = 32;
+    articulo[31].nombre = "Hervidor electrico";
+    articulo[31].precio = 20;
+    articulo[31].categoria="Electrodomesticos";
+    articulo[31].cantidad = 30;
+    
+    
+    // Inicializar productos predefinidos Electronica y Tecnologia
+    articulo[32].id = 33;
+    articulo[32].nombre = "Smartphone";
+    articulo[32].precio = 800;
+    articulo[32].categoria="Electronica y Tecnologia";
+    articulo[32].cantidad = 25;
+
+    articulo[33].id = 34;
+    articulo[33].nombre = "Laptop";
+    articulo[33].precio = 1200;
+    articulo[33].categoria="Electronica y Tecnologia";
+    articulo[33].cantidad = 10;
+
+    articulo[34].id = 35;
+    articulo[34].nombre = "Tablet";
+    articulo[34].precio = 600;
+    articulo[34].categoria="Electronica y Tecnologia";
+    articulo[34].cantidad = 15;
+
+    articulo[35].id = 36;
+    articulo[35].nombre = "Smartwatch";
+    articulo[35].precio = 300;
+    articulo[35].categoria="Electronica y Tecnologia";
+    articulo[35].cantidad = 30;
+
+    articulo[36].id = 37;
+    articulo[36].nombre = "Auriculares";
+    articulo[36].precio = 150;
+    articulo[36].categoria="Electronica y Tecnologia";
+    articulo[36].cantidad = 50;
+    
+    numeroProducto = 37;
 
     // Inicializar quejas predefinidas
     quejas[0].id = 1;
