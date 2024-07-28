@@ -196,11 +196,14 @@ void actualizarProducto(producto articulo[], int& numeroProducto, int& siguiente
     cout<<"Ingrese el nombre del producto a actualizar: ";
     cin.ignore();
     getline(cin, nombreActualizar);
+    
+    bool productoEncontrado = false;
 
     for (int i = 0; i < numeroProducto; ++i) 
 	{
         if (articulo[i].nombre == nombreActualizar) 
 		{
+			productoEncontrado = true;
 			setColor(14);
 			cout<<"*. ";
 			setColor(15);	
@@ -221,6 +224,11 @@ void actualizarProducto(producto articulo[], int& numeroProducto, int& siguiente
 			setColor(15);
             break;  
         }
+    } if (!productoEncontrado) {
+        setColor(12);
+        cout << "*** Producto no encontrado.\n";
+        setColor(15);
+        system("pause");
     }
 }
 void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria)
@@ -232,10 +240,13 @@ void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID
 	cout<<"Ingrese el nombre del producto: ";
 	cin.ignore();
 	getline(cin, nombreEliminar);
+	
+ 	bool productoEncontrado = false;
 	for (int i=0; i <numeroProducto; i++)
 	{
         if (articulo[i].nombre == nombreEliminar) 
 		{
+			productoEncontrado = true;
             for (int j=i; j<numeroProducto-1; j++)
 			{
                 articulo[j] = articulo[j + 1];
@@ -249,10 +260,16 @@ void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID
 			setColor(11);
             cout << "--- Producto eliminado exitosamente." << endl;
             setColor(15);
+            system("pause");
             break;
 
         }
-    }
+    }if (!productoEncontrado) {
+        	setColor(12);
+        	cout<<"*** Producto no encontrado"<<endl;
+        	setColor(15);
+			system("pause");
+		}
 }
 
 void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria ) {
@@ -604,7 +621,7 @@ void menuDeVentas(gestionDeventas ventas[],int &numeroVenta,producto articulo[],
 		setColor(14);      
         cout<<"5.";
         setColor(7);
-		cout<<"Eliminar venta"<<endl;
+		cout<<" Eliminar venta"<<endl;
 		setColor(14);      
         cout<<"0.";
         setColor(7);
@@ -704,7 +721,7 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
 		if(!productoEncontrado)
 		{
 			setColor(12);
-			cout<<"*** NO EXISTE"<<endl;
+			cout<<"*** El producto ingresado no existe"<<endl;
 			setColor(15);
 		}
     }
@@ -935,7 +952,7 @@ void agregarReclamo(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclam
         cin.ignore();
         getline(cin,auxiliar.descripcion);
         quejas[numeroReclamo++]=auxiliar;
-        setColor(2);
+        setColor(11);
         cout<<"+++ Reclamo agregado correctamente"<<endl;
         setColor(15);
     } else {
@@ -1049,7 +1066,7 @@ void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguiente
                     mostrarDescuentos(descuentos, numeroDescuentos);
                     system("pause");
                     break;
-                case 4:
+                case 0:
                     break;
                 default:
                 	setColor(12);
@@ -1084,10 +1101,12 @@ void agregarDescuento(descuento descuentos[], int &numeroDescuentos,int &siguien
         setColor(11);
         cout<<"+++ Descuento agregado exitosamente"<<endl;
         setColor(15);
+        system("pause");
     }else{//Se muestra un enunciado al llegar al  limite de descuentos 
     	setColor(12);
         cout<<"*** Limite de descuentos alcanzados"<<endl;
         setColor(15);
+        system("pause");
     }
 }
 //Funcion para eliminar un descuento agregado
@@ -1096,6 +1115,7 @@ void eliminarDescuento(descuento descuentos[], int &numeroDescuentos){
         setColor(12);
         cout<<"No hay descuentos para eliminar"<<endl;
         setColor(15);
+        system("pause");
 		return;
     }
     int idAuxiliar;//se crea una variable 
@@ -1122,6 +1142,7 @@ void eliminarDescuento(descuento descuentos[], int &numeroDescuentos){
     	setColor(12);
         cout<<"*** Descuento no encontrado"<<endl;
         setColor(15);
+        return;
     }
 }
 
