@@ -332,9 +332,11 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
                 	temporal.id = articulo[i].id;
                     ventas[numeroVenta] = temporal;
                     articulo[i].cantidad -= temporal.cantidad;
+                    
                     float precioSinDescuento = temporal.cantidad * articulo[i].precio;
                     float descuento = calcularDescuento(precioSinDescuento, temporal.cantidad, descuentos, numeroDescuentos);
                     ventas[numeroVenta].precioTotal = precioSinDescuento - descuento;
+                    
                     cout << "El precio total es: $" << ventas[numeroVenta].precioTotal<<"con un descuento de: "<<descuento<<endl;
                     cout << "Venta registrada correctamente." << endl;
                     numeroVenta++;
@@ -540,13 +542,16 @@ void mostrarReclamos(const reclamo quejas[], int numeroReclamo){
 }
 
 float calcularDescuento(float precioTotal, int cantidad, const descuento descuentos[], int numeroDescuentos) {
-    float descuento=0.0;
-    for (int i=0;i<numeroDescuentos;++i) {
+    float descuentoMaximo=0.0;
+     for (int i=0;i<numeroDescuentos;++i) {
         if (precioTotal>=descuentos[i].precioMinimo && cantidad>=descuentos[i].cantidadMinima){
-            descuento+=precioTotal*(descuentos[i].porcentaje/100);
+            float descuentoActual=precioTotal  * (descuentos[i].porcentaje/100);
+            if (descuentoActual>descuentoMaximo){
+                descuentoMaximo=descuentoActual;
+            }
         }
     }
-    return descuento;
+    return descuentoMaximo;
 }
 void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguienteIDDescuento){
     int opcionDescuentos;
