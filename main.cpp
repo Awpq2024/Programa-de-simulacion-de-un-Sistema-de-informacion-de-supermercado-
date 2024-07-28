@@ -62,13 +62,17 @@ int main() {
         setColor(7);
 		cout<<" Gestionar Descuentos"<<endl;
 		setColor(14);
-        cout<<"6.";
+		cout<<"6.";
+		setColor(7);
+		cout<<" Buscar producto"<<endl;
+		setColor(14);
+		cout<<"7.";
 		setColor(7);
 		cout<<" Salir del programa"<<endl;
 		setColor(14);
-        cout<<"Seleccione la opcion a ejecutar: ";
+		cout<<" Ingrese una opcion: ";
         setColor(15);
-        cin>>opcion;//se introdusce la opcion para usarla en el switch
+        cin>>opcion;//se introduce la opcion para usarla en el switch
 
         switch (opcion){//se usa un switch para comparar la opcion ingresada con las disponibles
     
@@ -119,7 +123,8 @@ int main() {
 					cout<<"1. Registrar una venta "<<endl;
             		cout<<"2. Mostrar ventas"<<endl;
        				cout<<"3. Mostrar ganancias"<<endl;
-       				cout<<"4. Volver al menu principal "<<endl;
+       				cout<<"4. Producto mas vendido"<<endl;
+       				cout<<"5. Volver al menu principal "<<endl;
        				cout<<"Ingrese una opcion: ";
        				cin>>opcionVentas;
        			
@@ -136,9 +141,13 @@ int main() {
             				system("cls");
             				mostrarGanancias(ventas, numeroVenta);
             				break;  
-						case 4://Se vuelve al menu principal
-						    cout<<"Volviendo al menu principal..."<<endl;
-               				break;     			
+						case 4:
+						    system("cls");
+							productoMasVendido(ventas, numeroVenta, articulo, numeroProducto);
+            				break;
+						case 5://Se vuelve al menu principal
+							cout<<"Volviendo al menu principal..."<<endl;
+               				break; 			
             			default://Se muestra un mensaje de error al no 
             				cout<<endl<<"Opcion no valida."<<endl<<endl;
             				system("pause");
@@ -154,7 +163,11 @@ int main() {
 				system("cls");
                 MenuDescuentos(descuentos, numeroDescuentos,siguienteIDDescuento);
                 break;
-            case 6://Se cumple con el requirimiento del do while, y se cierra el programa
+            case 6://Buscar producto
+                system("cls");
+				buscarProducto( articulo, numeroProducto, ventas, numeroVenta);
+            	break;                 
+            case 7://Se cumple con el requirimiento del do while, y se cierra el programa
                 cout<<"Saliendo del programa..."<<endl;
                 break;
             default://Se muestra un mensaje de error al no coincidir la opcion elegida con las disponibles en el menu, y se reinicia el programa
@@ -162,6 +175,6 @@ int main() {
                 system("pause");
         }
 
-    } while(opcion!=6);//El menu aparece nuevamente a menos que se seleccione la opcion 6. (Salir del programa)
+    } while(opcion!=7);//El menu aparece nuevamente a menos que se seleccione la opcion 6. (Salir del programa)
     return 0;//Finaliza el programa
 }

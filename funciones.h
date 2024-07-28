@@ -12,12 +12,14 @@ void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID)
 void mostrarProductos(const producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta);
 void mostrarProductosAlfabeticamente(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta);
 void mostrarProductosPorPrecio(producto articulo[], int numeroProducto, const gestionDeventas ventas[], int& numeroVenta);
+void buscarProducto(producto articulo[], int& numeroProducto, const gestionDeventas ventas[], int& numeroVenta);
 
 
 //funciones Ventas
 void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos);
 void mostrarVentas(const gestionDeventas ventas[], int numeroVenta);
 void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta);
+void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int &numeroProducto);
 
 //Funciones reclamos
 void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo);
