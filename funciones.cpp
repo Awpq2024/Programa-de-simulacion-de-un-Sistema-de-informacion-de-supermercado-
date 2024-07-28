@@ -5,6 +5,43 @@
 #include "producto.h"
 using namespace std;
 
+void buscarProducto(producto articulo[], int& numeroProducto, const gestionDeventas ventas[], int& numeroVenta)
+{
+	int escribirIdDelProducto;
+	cout<<"Digite el ID del producto: ";
+	cin>>escribirIdDelProducto;
+	producto buscarID;
+	int encontrar = false;
+		for(int i=0; i < numeroProducto ; i++)
+		{
+			if(escribirIdDelProducto==articulo[i].id)
+			{
+				buscarID=articulo[i];
+				encontrar = true;
+				break;
+			}
+		}
+	if(encontrar)
+	{
+		
+            cout<<"ID del producto: "<<buscarID.id<<", Nombre: "<<buscarID.nombre<<", Precio: $"<<buscarID.precio<<", Cantidad: "<<buscarID.cantidad<<endl; 
+            int cantidadVendida = 0;
+            for (int j = 0; j < numeroVenta; ++j){
+                if (ventas[j].id==buscarID.id){
+                    cantidadVendida += ventas[j].cantidad;
+                }
+            }
+            cout<<"Cantidad vendida: " <<cantidadVendida<<endl;
+            cout<< endl;
+        
+        system("pause"); 		
+	}
+	else
+	{
+		cout<<"No se encontro el producto. ";
+		
+	}
+}
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID){
     if (numeroProducto<maximosProductos){
     	int opcion;
@@ -168,6 +205,42 @@ void mostrarVentas(const gestionDeventas ventas[], int numeroVenta ){
         system("pause");
     }	
 }
+void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto)
+{
+	int ventaMaxima=0;
+	for(int i = 0; i < numeroVenta ; i++){
+		
+		if(ventas[i].cantidad > ventaMaxima)
+		{	
+			ventaMaxima = ventas[i].cantidad;			
+		}		
+	}
+	cout << "El/Los productos mas vendidos fueron:\n" << endl;
+    bool encontrado = false;
+    for (int i = 0; i < numeroProducto; ++i) {
+        int cantidadVendida = 0;
+        for (int j = 0; j < numeroVenta; ++j) {
+            if (ventas[j].nombreProducto == articulo[i].nombre) {
+            	
+                cantidadVendida += ventas[j].cantidad;
+            }
+        }
+        if (cantidadVendida == ventaMaxima) {
+            encontrado = true;
+            cout << "Nombre: " << articulo[i].nombre << endl;
+            cout << "ID del producto: " << articulo[i].id << ", Precio: $" << articulo[i].precio << ", Cantidad en inventario: " << articulo[i].cantidad << ", Cantidad vendida: " << cantidadVendida << endl;
+            cout << endl;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontraron productos más vendidos." << endl;
+    }
+
+    system("pause");
+	
+}
+
 void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
 {
 	int sumaTotal=0;
