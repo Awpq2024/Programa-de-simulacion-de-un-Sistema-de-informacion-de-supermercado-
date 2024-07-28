@@ -71,7 +71,39 @@ void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int&
     } while (opcionesFunciones != 3);
 }
 
-void buscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
+void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
+    int opcionesBusqueda;
+    do { // El menu se repite hasta elegir la opcion "3" del do while
+        system("cls");
+        cout << "--- Supermercado - Buscar productos ---" << endl;
+        cout << "1. Buscar producto por nombre" << endl;
+        cout << "2. Buscar producto por ID" << endl;
+        cout << "3. Salir del menu de buscar" << endl;
+        cout << "Ingrese una opcion: ";
+        cin >> opcionesBusqueda;
+
+        switch (opcionesBusqueda) {
+            case 1:
+                system("cls");
+				buscarProductoPorNombre(articulo, numeroProducto, ventas, numeroVenta);
+                break;
+            case 2:
+                system("cls");
+				buscarProductoPorID(articulo, numeroProducto, ventas, numeroVenta);
+                break;
+            case 3:
+                cout << "Saliendo del menu de busqueda..." << endl;
+                break;
+            default:
+                cout << endl << "Opcion no valida." << endl << endl;
+                system("pause");
+        }
+
+    } while (opcionesBusqueda != 3);
+}
+
+
+void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
     int escribirIdDelProducto;
     cout << "Digite el ID del producto: ";
     cin >> escribirIdDelProducto;
@@ -90,6 +122,36 @@ void buscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ve
         int cantidadVendida = 0;
         for (int j = 0; j < numeroVenta; ++j) {
             if (ventas[j].id == buscarID.id) {
+                cantidadVendida += ventas[j].cantidad;
+            }
+        }
+        cout << "Cantidad vendida: " << cantidadVendida << endl;
+        cout << endl;
+    } else {
+        cout << "No se encontro el producto." << endl;
+    }
+    system("pause");
+}
+void buscarProductoPorNombre(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
+    string escribirNombreDelProducto;
+    cout << "Escriba el nombre del producto: ";
+    cin.ignore();
+    getline(cin, escribirNombreDelProducto);
+    producto buscarNombre;
+    bool encontrar = false;
+    for (int i = 0; i < numeroProducto; i++) {
+        if (escribirNombreDelProducto == articulo[i].nombre) {
+            buscarNombre = articulo[i];
+            encontrar = true;
+            break;
+        }
+    }
+    if (encontrar) {
+        cout << "ID del producto: " << buscarNombre.id << ", Nombre: " << buscarNombre.nombre
+             << ", Precio: $" << buscarNombre.precio << ", Cantidad: " << buscarNombre.cantidad << endl;
+        int cantidadVendida = 0;
+        for (int j = 0; j < numeroVenta; ++j) {
+            if (ventas[j].id == buscarNombre.id) {
                 cantidadVendida += ventas[j].cantidad;
             }
         }
