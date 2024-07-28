@@ -1,11 +1,11 @@
-#ifndef PRODUCTO_H
-#define PRODUCTO_H
+#ifndef ESTRUCTURAS_H
+#define ESTRUCTURAS_H
 
 //Cantidades maximas de las estructuras
 const int maximosProductos=100;
 const int maximasVentas=100;
-const int maximosReclamos=100;
-const int maximosDescuentos=10;
+const int maximosReclamos=30;
+const int maximosDescuentos=20;
 
 struct producto//Estructura de los productos
 {
@@ -13,6 +13,7 @@ struct producto//Estructura de los productos
     float precio;//Precio del producto
     int cantidad;//Cantidad del producto
     int id;//ID del producto
+    std::string categoria;
 };
 struct gestionDeventas//Estructura de las ventas de productos
 {
