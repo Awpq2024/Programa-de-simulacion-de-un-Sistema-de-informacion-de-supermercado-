@@ -5,22 +5,65 @@
 #include "estructuras.h"
 using namespace std;
 
+
+
 void menuProductosCategorias(producto articulo[], int& numeroProducto, int& siguienteID,  gestionDeventas ventas[], int& numeroVenta, string& categoria){
 	int opcionCategorias;
 	do {//El menu se repite hasta elegir la opcion "6" del do while
     	system("cls");
-        cout<<"--- Supermercado-Categorias---"<<endl;
-        cout<<"1. Vestimenta"<<endl;
-        cout<<"2. Lacteos"<<endl;
-		cout<<"3. Mobiliario"<<endl; 
-		cout<<"4. Alimentos y Bebidas"<<endl; 
-		cout<<"5. Limpieza e Higiene"<<endl; 
-		cout<<"6. Automotriz"<<endl; 
-		cout<<"7. Mascotas"<<endl;
-		cout<<"8. Electrodomesticos"<<endl;
-		cout<<"9. Electronica y Tecnologia"<<endl;
-		cout<<"10. Volver al menu principal"<<endl;
-        cout<<"Ingrese una opcion: ";
+    	setColor(14);
+    	cout<<"==============================="<<endl;
+    	setColor(14);
+        cout<<"||        ";
+        setColor(15);
+		cout<<"Categorias";
+		setColor(14);
+		cout<<"       ||"<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(14);
+        cout<<"1.";
+        setColor(7);
+		cout<<" Vestimenta "<<endl;
+		setColor(14);
+        cout<<"2.";
+        setColor(7);
+		cout<<" Lacteos"<<endl;
+		setColor(14); 
+        cout<<"3.";
+        setColor(7);
+		cout<<" Mobiliario"<<endl;
+		setColor(14);      
+        cout<<"4.";
+        setColor(7);
+		cout<<" Alimentos y Bebidas"<<endl;
+		setColor(14);
+        cout<<"5."; 
+		setColor(7);
+		cout<<" Limpieza e Higiene"<<endl;
+		setColor(14);
+        cout<<"6.";
+        setColor(7);
+		cout<<" Automotriz"<<endl;
+		setColor(14);
+		cout<<"7.";
+		setColor(7);
+		cout<<" Mascotas"<<endl;
+		setColor(14);
+		cout<<"8.";
+        setColor(7);
+		cout<<" Electrodomesticos"<<endl;
+		setColor(14);
+		cout<<"9.";
+        setColor(7);
+		cout<<" Electronica y Tecnologia"<<endl;
+		setColor(14);
+		cout<<"0.";
+        setColor(7);
+		cout<<" Volver al menu principal"<<endl;
+		setColor(14);
+		cout<<endl<<"-> Ingrese una opcion: ";
+        setColor(15);
         cin>>opcionCategorias;//se introdusce la opcion para usarla en el switch
 		if (opcionCategorias>=1 && opcionCategorias<=9){
 					    switch(opcionCategorias){
@@ -35,22 +78,49 @@ void menuProductosCategorias(producto articulo[], int& numeroProducto, int& sigu
 			    		    case 9: categoria="Electronica y Tecnologia"; break;
         		}
                 funcionesDelMenuDeCategorias(articulo, numeroProducto, siguienteID, ventas, numeroVenta,categoria);
-        }
 
-    } while(opcionCategorias!=10);
+		}
+
+    } while(opcionCategorias!=0);
 }
 
 void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int& siguienteID, gestionDeventas ventas[], int& numeroVenta,const string& categoria) {
     int opcionesFunciones;
     do { // El menu se repite hasta elegir la opcion "3" del do while
         system("cls");
-        cout << "--- Supermercado - Categorias ---" << endl;
-        cout << "1. Agregar producto" << endl;
-        cout << "2. Mostrar productos agregados" << endl;
-        cout << "3. Actualizar producto" << endl;
-        cout << "4. Eliminar producto" << endl;
-        cout << "5. Salir del menu de categorias" << endl;
-        cout << "Ingrese una opcion: ";
+    	setColor(14);
+    	cout<<"==============================="<<endl;
+    	setColor(14);
+        cout<<"       ";
+        setColor(15);
+		cout<<"Gestion de Categoria";
+		setColor(14);
+		cout<<"       "<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(14);
+        cout<<"1.";
+        setColor(7);
+		cout<<" Agregar producto "<<endl;
+		setColor(14);
+        cout<<"2.";
+        setColor(7);
+		cout<<" Mostrar productos agregados"<<endl;
+		setColor(14);
+        cout<<"3.";
+        setColor(7);
+		cout<<" Actualizar producto"<<endl;
+		setColor(14);
+        cout<<"4.";
+        setColor(7);
+		cout<<" Eliminar producto"<<endl;
+		setColor(14);      
+        cout<<"0.";
+        setColor(7);
+		cout<<" Volver al menu de Categorias"<<endl;
+		setColor(14);
+		cout<<endl<<"-> Ingrese una opcion: ";
+        setColor(15);
         cin >> opcionesFunciones;
 
         switch (opcionesFunciones) {
@@ -64,41 +134,124 @@ void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int&
                 break;
             case 3:
                 system("cls");
-				actualizarProducto(articulo, numeroProducto, siguienteID, categoria);
-				break;
-			case 4:
-                system("cls");
-				eliminarProducto(articulo, numeroProducto, siguienteID, categoria);
-				break;
-            case 5:
-                cout << "Saliendo del menu de categorias..." << endl;
+                actualizarProducto(articulo, numeroProducto, siguienteID, categoria);
                 break;
+            case 4:
+                system("cls");
+                eliminarProducto(articulo, numeroProducto, siguienteID, categoria);
+                break;
+            case 0:
+            	break;
             default:
-                cout << endl << "Opcion no valida." << endl << endl;
-                system("pause");
+                setColor(12);
+				cout<<endl<<"*** OPCION NO VALIDA."<<endl;
+				setColor(15);
+                system("pause"); 
         }
 
-    } while (opcionesFunciones != 5);
+    } while (opcionesFunciones != 0);
 }
+
 
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria) {
     if (numeroProducto < maximosProductos) {
         producto auxiliar;
+        setColor(14);
+        cout<<"*. ";
+        setColor(15);
         cout << "Ingrese el nombre del producto: ";
         cin.ignore();
         getline(cin,auxiliar.nombre);
+        setColor(14);
+        cout<<"*. ";
+        setColor(15);
         cout << "Ingrese el precio del producto: ";
         cin >> auxiliar.precio;
+        setColor(14);
+        cout<<"*. ";
+        setColor(15);
         cout << "Ingrese la cantidad del producto: ";
         cin >> auxiliar.cantidad;
         auxiliar.id = siguienteID++;
         auxiliar.categoria=categoria;
         articulo[numeroProducto++] = auxiliar;
-        cout << endl << "Producto agregado correctamente." << endl;
+        setColor(11);
+        cout << endl << "+++ Producto agregado correctamente." << endl;
+        setColor(15);
         system("pause");
     } else {
+        setColor(14);
+        cout<<"*. ";
+        setColor(15);
         cout << "Limite de productos alcanzado." << endl;
         system("pause");
+    }
+}
+void actualizarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria)
+{
+	string nombreActualizar;
+	setColor(14);
+	cout<<"*. ";
+	setColor(15);
+    cout<<"Ingrese el nombre del producto a actualizar: ";
+    cin.ignore();
+    getline(cin, nombreActualizar);
+
+    for (int i = 0; i < numeroProducto; ++i) 
+	{
+        if (articulo[i].nombre == nombreActualizar) 
+		{
+			setColor(14);
+			cout<<"*. ";
+			setColor(15);	
+            cout << "Ingrese el nuevo nombre del producto: ";
+            getline(cin, articulo[i].nombre);
+        	setColor(14);
+			cout<<"*. ";
+			setColor(15);	
+            cout << "Ingrese el nuevo precio por unidad del producto: ";
+            cin >> articulo[i].precio;
+            setColor(14);
+			cout<<"*. ";
+			setColor(15);	
+            cout << "Ingrese la cantidad producto: ";
+            cin >> articulo[i].cantidad;
+           	setColor(11);
+            cout << "=== Producto actualizado correctamente.\n";
+			setColor(15);
+            break;  
+        }
+    }
+}
+void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria)
+{
+	string nombreEliminar;
+	setColor(14);
+	cout<<"*. ";
+	setColor(15);
+	cout<<"Ingrese el nombre del producto: ";
+	cin.ignore();
+	getline(cin, nombreEliminar);
+	for (int i=0; i <numeroProducto; i++)
+	{
+        if (articulo[i].nombre == nombreEliminar) 
+		{
+            for (int j=i; j<numeroProducto-1; j++)
+			{
+                articulo[j] = articulo[j + 1];
+            }
+            numeroProducto--;
+            for (int k = i; k < numeroProducto; ++k) {
+                articulo[k].id = k + 1; // Asumiendo que el ID comienza en 1 y es continuo
+            }
+            // Actualiza el siguiente ID
+            siguienteID = numeroProducto + 1; // El siguiente ID será el número total de productos + 1
+			setColor(11);
+            cout << "--- Producto eliminado exitosamente." << endl;
+            setColor(15);
+            break;
+
+        }
     }
 }
 
@@ -106,12 +259,35 @@ void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDev
     int opcionMostrar;
     do {
         system("cls");
-        cout << "Menu de Mostrar Productos:" << endl;
-        cout << "1. Mostrar productos" << endl;
-        cout << "2. Mostrar productos alfabeticamente" << endl;
-        cout << "3. Mostrar productos por precio" << endl;
-        cout << "4. Volver al menu principal" << endl;
-        cout << "Ingrese una opcion: ";
+    	setColor(14);
+    	cout<<"==============================="<<endl;
+    	setColor(14);
+        cout<<"       ";
+        setColor(15);
+		cout<<"Mostrar Productos";
+		setColor(14);
+		cout<<"       "<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(14);
+        cout<<"1.";
+        setColor(7);
+		cout<<" Mostrar productos "<<endl;
+		setColor(14);
+        cout<<"2.";
+        setColor(7);
+		cout<<" Mostrar productos alfabeticamente"<<endl;
+		setColor(14);      
+        cout<<"3.";
+        setColor(7);
+		cout<<" Mostrar productos por precio"<<endl;
+		setColor(14);
+		cout<<"0.";
+        setColor(7);
+		cout<<" Volver al menu anterior"<<endl;
+		setColor(14);
+		cout<<endl<<"-> Ingrese una opcion: ";
+        setColor(15);
         cin >> opcionMostrar;
 
         switch (opcionMostrar) {
@@ -130,27 +306,36 @@ void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDev
                 mostrarProductosPorPrecio(articulo, numeroProducto, ventas, numeroVenta, categoria);
                 system("pause");
                 break;
-            case 4:
-                cout << "Volviendo al menu principal..." << endl;
+            case 0:
                 break;
             default:
-                cout << "Opcion no valida, intente de nuevo." << endl;
+            	setColor(12);
+                cout << "*** OPCION NO VALIDA" << endl;
+                setColor(15);
                 system("pause");
         }
-    } while (opcionMostrar != 4);
+    } while (opcionMostrar != 0);
 }
 
 void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria) {
     if (numeroProducto == 0) {
-        cout << "No hay productos agregados." << endl;
+    	setColor(12);
+        cout << "*** No hay productos agregados." << endl;
+        setColor(15);
         
     } else {
+    	setColor(14);
+    	cout<<"================================================================"<<endl;
+    	setColor(15);
         cout << "--- Productos agregados en la categoria: " << categoria << " ---" << endl;
+    	setColor(14);
+    	cout<<"================================================================"<<endl;
+    	setColor(15);
         for (int i = 0; i < numeroProducto; ++i) {
             if (articulo[i].categoria == categoria) { // Solo muestra productos en la categoría seleccionada
                 cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre
                      << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad
-                     << ", Categoria: " << articulo[i].categoria << endl;
+                     << ", Categoria: " << articulo[i].categoria;
                 int cantidadVendida = 0;
                 for (int j = 0; j < numeroVenta; ++j) {
                     if (ventas[j].nombreProducto == articulo[i].nombre) {
@@ -168,12 +353,14 @@ void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas 
 
 void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria) {
     if (numeroProducto == 0) {
-        cout << "No hay productos agregados." << endl;
+    	setColor(12);
+        cout << "*** No hay productos agregados." << endl;
+        setColor(15);
         
     } else {
         // Implementación de la ordenación alfabética
         for (int i = 0; i < numeroProducto - 1; ++i) {
-            for (int j = i + 1; j < numeroProducto ; ++j) {
+            for (int j = i + 1; j < numeroProducto; ++j) {
                 if (articulo[i].categoria == categoria && articulo[j].categoria == categoria) {
                     if (articulo[i].nombre > articulo[j].nombre) {
                         // Intercambiar productos
@@ -184,13 +371,18 @@ void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, g
                 }
             }
         }
-
+		setColor(14);
+    	cout<<"============================================================================"<<endl;
+    	setColor(15);
         cout << "--- Productos ordenados alfabeticamente en la categoria: " << categoria << " ---" << endl;
+		setColor(14);
+    	cout<<"============================================================================"<<endl;
+    	setColor(15);
         for (int i = 0; i < numeroProducto; ++i) {
             if (articulo[i].categoria == categoria) {
                 cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre
                      << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad
-                     << ", Categoria: " << articulo[i].categoria << endl;
+                     << ", Categoria: " << articulo[i].categoria;
                 int cantidadVendida = 0;
                 for (int j = 0; j < numeroVenta; ++j) {
                     if (ventas[j].nombreProducto == articulo[i].nombre) {
@@ -207,12 +399,14 @@ void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, g
 
 void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria) {
     if (numeroProducto == 0) {
-        cout << "No hay productos agregados." << endl;
+    	setColor(12);
+        cout << "*** No hay productos agregados." << endl;
+        setColor(15);
         
     } else {
         // Ordenar productos por precio (de menor a mayor)
-        for (int i = 0; i < numeroProducto - 1 ; ++i) {
-            for (int j = i + 1; j < numeroProducto ; ++j) {
+        for (int i = 0; i < numeroProducto - 1; ++i) {
+            for (int j = i + 1; j < numeroProducto; ++j) {
                 if (articulo[i].categoria == categoria && articulo[j].categoria == categoria) {
                     if (articulo[i].precio > articulo[j].precio) {
                         // Intercambiar productos
@@ -223,13 +417,18 @@ void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestion
                 }
             }
         }
-
+		setColor(14);
+    	cout<<"==================================================================================="<<endl;
+    	setColor(15);
         cout << "--- Productos ordenados por precio en la categoria: " << categoria << " ---" << endl;
-        for (int i = numeroProducto - 1; i >= 0; --i) {
+    	setColor(14);
+    	cout<<"=================================================================================="<<endl;
+    	setColor(15);
+        for (int i = 0; i < numeroProducto; ++i) {
             if (articulo[i].categoria == categoria) {
                 cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre
                      << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad
-                     << ", Categoria: " << articulo[i].categoria << endl;
+                     << ", Categoria: " << articulo[i].categoria;
                 int cantidadVendida = 0;
                 for (int j = 0; j < numeroVenta; ++j) {
                     if (ventas[j].nombreProducto == articulo[i].nombre) {
@@ -243,65 +442,36 @@ void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestion
      
     }
 }
-void actualizarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria)
-{
-	string nombreActualizar;
-    cout<<"Ingrese el nombre del producto a actualizar: ";
-    cin.ignore();
-    getline(cin, nombreActualizar);
-    
-    for (int i = 0; i < numeroProducto; ++i) 
-	{
-        if (articulo[i].nombre == nombreActualizar) 
-		{
-            cout << "Ingrese el nuevo nombre del producto: ";
-            getline(cin, articulo[i].nombre);
-            cout << "Ingrese el nuevo precio por unidad del producto: ";
-            cin >> articulo[i].precio;
-            cout << "Ingrese la cantidad producto: ";
-            cin >> articulo[i].cantidad;
-            cout << "Producto actualizado correctamente.\n";
-            break;  
-        }
-    }
-}
-void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria)
-{
-	string nombreEliminar;
-	cout<<"Ingrese el nombre del producto: ";
-	cin.ignore();
-	getline(cin, nombreEliminar);
-	for (int i=0; i <numeroProducto; i++)
-	{
-        if (articulo[i].nombre == nombreEliminar) 
-		{
-            for (int j=i; j<numeroProducto-1; j++)
-			{
-                articulo[j] = articulo[j + 1];
-            }
-            numeroProducto--;
-            for (int k = i; k < numeroProducto; ++k) {
-                articulo[k].id = k + 1; // Asumiendo que el ID comienza en 1 y es continuo
-            }
-            // Actualiza el siguiente ID
-            siguienteID = numeroProducto + 1; // El siguiente ID será el número total de productos + 1
-
-            cout << "Producto eliminado." << endl;
-            break;
-        
-        }
-    }
-}
 
 void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
     int opcionesBusqueda;
     do { // El menu se repite hasta elegir la opcion "3" del do while
         system("cls");
-        cout << "--- Supermercado - Buscar productos ---" << endl;
-        cout << "1. Buscar producto por nombre" << endl;
-        cout << "2. Buscar producto por ID" << endl;
-        cout << "3. Salir del menu de buscar" << endl;
-        cout << "Ingrese una opcion: ";
+    	setColor(14);
+    	cout<<"==============================="<<endl;
+    	setColor(15);
+        cout<<"       ";
+        setColor(15);
+		cout<<"Buscar productos";
+		setColor(14);
+		cout<<"       "<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(14);
+        cout<<"1.";
+        setColor(7);
+		cout<<" Buscar producto por nombre "<<endl;
+		setColor(14);
+        cout<<"2.";
+        setColor(7);
+		cout<<" Buscar producto por ID"<<endl;
+		setColor(14);
+        cout<<"0.";
+        setColor(7);
+		cout<<" Volver al menu principal"<<endl;
+		setColor(14);
+		cout<<endl<<"-> Ingrese una opcion: ";
+        setColor(15);
         cin >> opcionesBusqueda;
 
         switch (opcionesBusqueda) {
@@ -313,19 +483,23 @@ void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventa
                 system("cls");
 				buscarProductoPorID(articulo, numeroProducto, ventas, numeroVenta);
                 break;
-            case 3:
-                cout << "Saliendo del menu de busqueda..." << endl;
+            case 0:
                 break;
             default:
-                cout << endl << "Opcion no valida." << endl << endl;
+            	setColor(12);
+                cout << endl << "*** OPCION NO VALIDA." << endl << endl;
+                setColor(15);
                 system("pause");
         }
 
-    } while (opcionesBusqueda != 3);
+    } while (opcionesBusqueda != 0);
 }
 
 void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
     int escribirIdDelProducto;
+    setColor(14);
+    cout<<"*. ";
+    setColor(15);
     cout << "Digite el ID del producto: ";
     cin >> escribirIdDelProducto;
     producto buscarID;
@@ -338,8 +512,11 @@ void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDevent
         }
     }
     if (encontrar) {
+    	setColor(14);
+    	cout<<"*. ";
+    	setColor(15);
         cout << "ID del producto: " << buscarID.id << ", Nombre: " << buscarID.nombre
-             << ", Precio: $" << buscarID.precio << ", Cantidad: " << buscarID.cantidad << endl;
+             << ", Precio: $" << buscarID.precio << ", Cantidad: " << buscarID.cantidad;
         int cantidadVendida = 0;
         for (int j = 0; j < numeroVenta; ++j) {
             if (ventas[j].id == buscarID.id) {
@@ -349,13 +526,18 @@ void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDevent
         cout << "Cantidad vendida: " << cantidadVendida << endl;
         cout << endl;
     } else {
-        cout << "No se encontro el producto." << endl;
+    	setColor(12);
+        cout << "*** No se encontro el producto." << endl;
+        setColor(15);
     }
     system("pause");
 }
 void buscarProductoPorNombre(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
     string escribirNombreDelProducto;
-    cout << "Escriba el nombre del producto: ";
+    setColor(14);
+    cout<<"*. ";
+    setColor(15);
+	cout << "Escriba el nombre del producto: ";
     cin.ignore();
     getline(cin, escribirNombreDelProducto);
     producto buscarNombre;
@@ -368,8 +550,11 @@ void buscarProductoPorNombre(producto articulo[], int& numeroProducto, gestionDe
         }
     }
     if (encontrar) {
+    	setColor(14);
+    	cout<<"*. ";
+    	setColor(15);
         cout << "ID del producto: " << buscarNombre.id << ", Nombre: " << buscarNombre.nombre
-             << ", Precio: $" << buscarNombre.precio << ", Cantidad: " << buscarNombre.cantidad << endl;
+             << ", Precio: $" << buscarNombre.precio << ", Cantidad: " << buscarNombre.cantidad;
         int cantidadVendida = 0;
         for (int j = 0; j < numeroVenta; ++j) {
             if (ventas[j].id == buscarNombre.id) {
@@ -379,24 +564,54 @@ void buscarProductoPorNombre(producto articulo[], int& numeroProducto, gestionDe
         cout << "Cantidad vendida: " << cantidadVendida << endl;
         cout << endl;
     } else {
-        cout << "No se encontro el producto." << endl;
+    	setColor(12);
+        cout << "*** No se encontro el producto." << endl;
+        setColor(15);
     }
     system("pause");
 }
-
-
 
 void menuDeVentas(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
     int opcionVentas;
     do{
     	system("cls");
-		cout<<"1. Registrar una venta "<<endl;
-    	cout<<"2. Mostrar ventas"<<endl;
-    	cout<<"3. Mostrar ganancias"<<endl;
-    	cout<<"4. Producto mas vendido"<<endl;
-    	cout<<"5. Eliminar venta"<<endl;
-    	cout<<"6. Volver al menu principal "<<endl;
-    	cout<<"Ingrese una opcion: ";
+   		setColor(14);
+    	cout<<"==============================="<<endl;
+    	setColor(15);
+        cout<<"       ";
+        setColor(15);
+		cout<<"Menu de Ventas";
+		setColor(14);
+		cout<<"       "<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(14);
+        cout<<"1.";
+        setColor(7);
+		cout<<" Registrar una venta "<<endl;
+		setColor(14);
+        cout<<"2.";
+        setColor(7);
+		cout<<" Mostrar ventas"<<endl;
+		setColor(14);      
+        cout<<"3.";
+        setColor(7);
+		cout<<" Mostrar ganancias"<<endl;
+		setColor(14);
+		cout<<"4.";
+        setColor(7);
+		cout<<" Producto mas vendido"<<endl;
+		setColor(14);      
+        cout<<"5.";
+        setColor(7);
+		cout<<"Eliminar venta"<<endl;
+		setColor(14);      
+        cout<<"0.";
+        setColor(7);
+		cout<<" Volver al menu principal"<<endl;
+		setColor(14);
+		cout<<endl<<"-> Ingrese una opcion: ";
+        setColor(15);
     	cin>>opcionVentas;
     		
     	switch(opcionVentas)
@@ -426,15 +641,16 @@ void menuDeVentas(gestionDeventas ventas[],int &numeroVenta,producto articulo[],
     			eliminarVenta(ventas,  numeroVenta);
     			system("pause");
     			break;
-			case 6://Se vuelve al menu principal
-				cout<<"/nVolviendo al menu principal..."<<endl;
+			case 0://Se vuelve al menu principal
             	break; 			
             default://Se muestra un mensaje de error al no 
+            	setColor(12);
             	cout<<endl<<"Opcion no valida."<<endl<<endl;
+            	setColor(15);
             	system("pause");
            		break;
     	}
-	}while(opcionVentas!=6);//El menu de ventas
+	}while(opcionVentas!=0);//El menu de ventas
 			
 }	
 
@@ -443,11 +659,17 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
     bool productoEncontrado = false; 
 	if (numeroVenta < maximasVentas) {
         gestionDeventas temporal;
+        setColor(14);      
+        cout<<"*.";
+        setColor(7);
         cout << "Ingrese el nombre del producto: ";
         cin >> temporal.nombreProducto;
 
         for (int i = 0; i < numeroProducto; i++) {
             if (temporal.nombreProducto == articulo[i].nombre) {
+       	        setColor(14);      
+       	 		cout<<"*.";
+        		setColor(7);
                 cout << "Ingrese la cantidad: ";
                 cin >> temporal.cantidad;
 
@@ -459,13 +681,20 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
                     float precioSinDescuento = temporal.cantidad * articulo[i].precio;
                     float descuento = calcularDescuento(precioSinDescuento, temporal.cantidad, descuentos, numeroDescuentos);
                     ventas[numeroVenta].precioTotal = precioSinDescuento - descuento;
-                    
+                    setColor(14);      
+       				cout<<"*.";
+        			setColor(7);
                     cout << "El precio total es: $" << ventas[numeroVenta].precioTotal<<" con un descuento de: "<<descuento<<endl;
-                    cout << "Venta registrada correctamente." << endl;
+                    setColor(11);
+                    cout << "+++ Venta registrada correctamente." << endl;
+                    setColor(15);
                     numeroVenta++;
                 } else {
-                    cout << "No hay suficiente cantidad de " << temporal.nombreProducto << " en el inventario." << endl;
+                	setColor(12);
+                    cout << "*** No hay suficiente cantidad de " << temporal.nombreProducto << " en el inventario." << endl;
+                    setColor(15);
                 }               
+        
                 productoEncontrado=true;
                 break; 
         	}
@@ -474,14 +703,16 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
 		}
 		if(!productoEncontrado)
 		{
-			cout<<"No existe"<<endl;
-			
+			setColor(12);
+			cout<<"*** NO EXISTE"<<endl;
+			setColor(15);
 		}
-		        
     }
     else
     {
-    	cout << "No hay productos para registrar una venta o limite de ventas alcanzado" << endl;
+    	setColor(12);
+    	cout << "*** No hay productos para registrar una venta o limite de ventas alcanzado" << endl;
+    	setColor(15);
 	}
 	
     		
@@ -489,11 +720,22 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
 
 void mostrarVentas(gestionDeventas ventas[], int numeroVenta ){
 	if (numeroVenta==0){
-        cout<<"No hay ventas registradas.\n"<<endl;
+		setColor(12);
+        cout<<"*** No hay ventas registradas.\n"<<endl;
+        setColor(15);
         
     }else{
+		setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(15);
         cout<<"--- Ventas registradas ---"<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(15);
         for (int i = 0; i < numeroVenta; ++i){
+        	setColor(14);
+        	cout<<"*. ";
+        	setColor(7);
             cout<<"ID del producto: "<<ventas[i].id<<", Nombre: "<<ventas[i].nombreProducto<<", Cantidad: $"<<ventas[i].cantidad<<", Precio total: $"<<ventas[i].precioTotal<<endl;
             cout<<endl;
         }
@@ -504,16 +746,24 @@ void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
 {
 	if(numeroVenta == 0)
 	{
-		cout<<"No hay ganancias registradas."<<endl;
+		setColor(12);
+		cout<<"*** No hay ganancias registradas."<<endl;
+		setColor(15);
 	}
 	else
 	{
 		int sumaTotal=0;
+		setColor(14);
+        cout<<"*.";
+        setColor(7);
 		cout<<"La cantidad total de ventas realizadas: "<<numeroVenta<<endl;
 		for (int i=0; i<numeroVenta; i++ )
 		{
 			sumaTotal+=ventas[i].precioTotal;
 		}
+		setColor(14);
+        cout<<"*.";
+        setColor(7);
 		cout<<"Ganancia total de las ventas realizadas: $ "<<sumaTotal<<endl;
 		cout<<endl;
 	}
@@ -522,7 +772,9 @@ void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto art
 {
 	if(numeroVenta == 0)
 	{
-		cout<<"No se registro ninguna venta."<<endl;
+		setColor(12);
+		cout<<"*** No se registro ninguna venta."<<endl;
+		setColor(15);
 	}
 	else
 	{
@@ -534,7 +786,13 @@ void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto art
 				ventaMaxima = ventas[i].cantidad;			
 			}		
 		}
+		setColor(14);
+      	cout<<"=========================================="<<endl;
+      	setColor(14);
 		cout << "El/Los productos mas vendidos fueron:\n" << endl;
+		setColor(14);
+      	cout<<"=========================================="<<endl;
+      	setColor(14);
 	    bool encontrado = false;
 	    for (int i = 0; i < numeroProducto; ++i) {
 	        int cantidadVendida = 0;
@@ -546,6 +804,9 @@ void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto art
        	 	}
         	if (cantidadVendida == ventaMaxima) {
         	    encontrado = true;
+        	    setColor(14);
+      			cout<<"*. "<<endl;
+      			setColor(7);
         	    cout << "Nombre: " << articulo[i].nombre << endl;
         	    cout << "ID del producto: " << articulo[i].id << ", Precio: $" << articulo[i].precio << ", Cantidad en inventario: " << articulo[i].cantidad << ", Cantidad vendida: " << cantidadVendida << endl;
         	    cout << endl;
@@ -553,7 +814,9 @@ void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto art
     	}
 
     	if (!encontrado) {
-    	    cout << "No se encontraron productos más vendidos." << endl;
+    		setColor(12);
+    	    cout << "*** No se encontraron productos más vendidos." << endl;
+    	    setColor(15);
     	}
 	}
 }
@@ -561,11 +824,16 @@ void eliminarVenta(gestionDeventas ventas[], int& numeroVenta)
 {
 	if(numeroVenta==0)
 	{
-		cout<<"No hay una venta registrada."<<endl;
+		setColor(12);
+		cout<<"*** No hay una venta registrada."<<endl;
+		setColor(15);
 	}
 	else
 	{
 		string nombreAEliminar;
+		setColor(14);
+		cout<<"*. ";
+		setColor(15);
 		cout<<"Escriba el nombre del producto: ";
 		cin.ignore();
 		getline(cin, nombreAEliminar);
@@ -583,10 +851,14 @@ void eliminarVenta(gestionDeventas ventas[], int& numeroVenta)
             }
             numeroVenta--;  // Decrementa el número de ventas
             ventas[numeroVenta] = {};  // Limpia la última posición
-
+			setColor(14);
+			cout<<"*. ";
+			setColor(7);
             cout << "Última venta del producto '" << nombreAEliminar << "' eliminada." << endl;
         } else {
+        	setColor(12);
             cout << "No se encontraron ventas para el producto '" << nombreAEliminar << "'." << endl;
+            setColor(15);
         }
     }
 }
@@ -595,13 +867,35 @@ void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo)
 	int opcionReclamo;
 	do {
     	system("cls");
-        cout<<"--- Supermercado ---"<<endl;
-        cout<<"---- Reclamos ----"<<endl;
-        cout<<"1. Agregar reclamo"<<endl;
-        cout<<"2. Eliminar reclamo"<<endl;
-        cout<<"3. Mostrar reclamos"<<endl;
-        cout<<"4. volver al menu"<<endl;
-        cout<<"Eliga una opcion: ";
+    	setColor(14);
+    	cout<<"==============================="<<endl;
+    	setColor(15);
+        cout<<"       ";
+        setColor(15);
+		cout<<"Menu de Reclamos";
+		setColor(14);
+		cout<<"       "<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(14);
+        cout<<"1.";
+        setColor(7);
+		cout<<" Agregar reclamo "<<endl;
+		setColor(14);
+        cout<<"2.";
+        setColor(7);
+		cout<<" Eliminar reclamo"<<endl;
+		setColor(14);      
+        cout<<"3.";
+        setColor(7);
+		cout<<" Mostrar reclamos"<<endl;
+		setColor(14);
+        cout<<"0.";
+        setColor(7);
+		cout<<" Volver al menu principal"<<endl;
+		setColor(14);
+		cout<<endl<<"-> Ingrese una opcion: ";
+        setColor(15);
         cin>>opcionReclamo;
 		switch(opcionReclamo){
 			case 1:
@@ -619,31 +913,43 @@ void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo)
                 mostrarReclamos(quejas, numeroReclamo);
                 system("pause");
                 break;
-            case 4:
+            case 0:
                 break;
             default:
+            	setColor(12);
                 cout<<endl<<"Opcion no valida."<<endl<<endl;
+                setColor(15);
                 system("pause");
         }
-    }while(opcionReclamo!=4);
+    }while(opcionReclamo!=0);
  
 }
 void agregarReclamo(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo){
     if (numeroReclamo<maximosReclamos){
         reclamo auxiliar;
         auxiliar.id=siguienteIDReclamo++;
+        setColor(14);
+        cout<<"*. ";
+        setColor(15);
         cout<<"Ingrese la descripcion del reclamo: ";
         cin.ignore();
         getline(cin,auxiliar.descripcion);
         quejas[numeroReclamo++]=auxiliar;
-        cout<<"Reclamo agregado correctamente"<<endl;
+        setColor(2);
+        cout<<"+++ Reclamo agregado correctamente"<<endl;
+        setColor(15);
     } else {
-        cout<<"Limite de reclamos alcanzados"<<endl;
+    	setColor(12);
+        cout<<"*** Limite de reclamos alcanzados"<<endl;
+        setColor(15);
     }
 }
 void eliminarReclamo(reclamo quejas[], int &numeroReclamo){
     int indice=-1;
     int id;
+    setColor(14);
+    cout<<"*. ";
+    setColor(15);
     cout<<"Ingrese el ID del reclamo a eliminar: ";
     cin>>id;
     for (int i=0;i<numeroReclamo;++i){
@@ -657,16 +963,25 @@ void eliminarReclamo(reclamo quejas[], int &numeroReclamo){
             quejas[i]=quejas[i+1];
         }
         --numeroReclamo;
-        cout<<"Reclamo eliminado exitosamente."<<endl;
+        setColor(11);
+        cout<<"--- Reclamo eliminado exitosamente."<<endl;
+        setColor(15);
     } else {
-        cout<<"Reclamo no encontrado."<<endl;
+    	setColor(12);
+        cout<<"*** Reclamo no encontrado."<<endl;
+        setColor(15);
     }
 }
 void mostrarReclamos(const reclamo quejas[], int numeroReclamo){
     if (numeroReclamo==0){
-        cout<<"No hay reclamos."<<endl;
+    	setColor(12);
+        cout<<"*** No hay reclamos."<<endl;
+        setColor(15);
     } else {
         for (int i=0;i<numeroReclamo;++i){
+        	setColor(14);
+        	cout<<"*. ";
+        	setColor(15);
             cout<<"ID: "<<quejas[i].id<<", Descripcion: "<<quejas[i].descripcion<<endl;
         }
     }
@@ -688,13 +1003,35 @@ void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguiente
     int opcionDescuentos;
     do {
         system("cls");
-        cout<<"--- Supermercado ---"<<endl;
-        cout<<"---- Descuentos ----"<<endl;
-        cout<<"1. Agregar descuento"<<endl;
-        cout<<"2. Eliminar descuento"<<endl;
-        cout<<"3. Mostrar descuentos"<<endl;
-        cout<<"4. Volver al menu principal"<<endl;
-        cout<<"Ingrese una opcion: ";
+    	setColor(14);
+    	cout<<"==============================="<<endl;
+    	setColor(15);
+        cout<<"       ";
+        setColor(15);
+		cout<<"Menu de Descuentos";
+		setColor(14);
+		cout<<"       "<<endl;
+        setColor(14);
+      	cout<<"==============================="<<endl;
+      	setColor(14);
+        cout<<"1.";
+        setColor(7);
+		cout<<" Agregar descuento "<<endl;
+		setColor(14);
+        cout<<"2.";
+        setColor(7);
+		cout<<" Eliminar descuento"<<endl;
+		setColor(14);      
+        cout<<"3.";
+        setColor(7);
+		cout<<" Mostrar descuentos"<<endl;
+		setColor(14);
+        cout<<"0.";
+        setColor(7);
+		cout<<" Volver al menu principal"<<endl;
+		setColor(14);
+		cout<<endl<<"-> Ingrese una opcion: ";
+        setColor(15);
         cin>>opcionDescuentos;
         switch(opcionDescuentos){
                 case 1:
@@ -715,36 +1052,56 @@ void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguiente
                 case 4:
                     break;
                 default:
+                	setColor(12);
                     cout<<endl<<"Opcion no valida."<<endl<<endl;
+                    setColor(15);
                     system("pause");
                     break;
                     }
-    }while(opcionDescuentos!=4);
+    }while(opcionDescuentos!=0);
 }
 
 void agregarDescuento(descuento descuentos[], int &numeroDescuentos,int &siguienteIDDescuento){
     if (numeroDescuentos<maximosDescuentos){
         descuento nuevoDescuento;//se crea una nuevo descuento con la estructura descuento, y se ingresan sus variables
         nuevoDescuento.id=siguienteIDDescuento++;
+        setColor(14);
+        cout<<"*. ";
+        setColor(15);
 		cout<<"Ingrese el precio minimo para el descuento: ";
         cin>>nuevoDescuento.precioMinimo;
+        setColor(14);
+        cout<<"*. ";
+        setColor(15);
         cout<<"Ingrese la cantidad minima para el descuento: ";
         cin>>nuevoDescuento.cantidadMinima;
+        setColor(14);
+        cout<<"*. ";
+        setColor(15);
         cout<<"Ingrese el porcentaje de descuento: ";
         cin>>nuevoDescuento.porcentaje;
         descuentos[numeroDescuentos++]=nuevoDescuento;//Se agrega el nuevo descuento y se aumenta la cantidad de descuentos
-        cout<<"Descuento agregado exitosamente"<<endl;
+        setColor(11);
+        cout<<"+++ Descuento agregado exitosamente"<<endl;
+        setColor(15);
     }else{//Se muestra un enunciado al llegar al  limite de descuentos 
-        cout<<"Limite de descuentos alcanzados"<<endl;
+    	setColor(12);
+        cout<<"*** Limite de descuentos alcanzados"<<endl;
+        setColor(15);
     }
 }
 //Funcion para eliminar un descuento agregado
 void eliminarDescuento(descuento descuentos[], int &numeroDescuentos){
     if (numeroDescuentos==0){//Si no hay ningun descuento registrado se muestra un enunciado
+        setColor(12);
         cout<<"No hay descuentos para eliminar"<<endl;
-        return;
+        setColor(15);
+		return;
     }
     int idAuxiliar;//se crea una variable 
+    setColor(14);
+    cout<<"*. ";
+    setColor(15);
     cout<<"Ingrese el ID del descuento a eliminar: ";
     cin>>idAuxiliar;
     bool encontrado=false;//Se crea un variable para indicar si el descuento fue encontrado
@@ -755,23 +1112,38 @@ void eliminarDescuento(descuento descuentos[], int &numeroDescuentos){
             }
             --numeroDescuentos;//se elimina una posicion del total de descuentos registrados
             encontrado=true;//el producto fue encontrado y es eliminado
-            cout<<"Descuento eliminado exitosamente"<<endl;
+            setColor(11);
+            cout<<"--- Descuento eliminado exitosamente"<<endl;
+            setColor(15);
             break;
         }
     }
     if (!encontrado){
-        cout<<"Descuento no encontrado"<<endl;
+    	setColor(12);
+        cout<<"*** Descuento no encontrado"<<endl;
+        setColor(15);
     }
 }
 
 // Función para mostrar los descuentos
 void mostrarDescuentos(const descuento descuentos[], int numeroDescuentos) {
     if (numeroDescuentos==0){//Muestra un enunciado si no hay ningun descuento agregado
-        cout<<"No hay descuentos disponibles."<<endl;
+    	setColor(12);
+        cout<<"*** No hay descuentos disponibles."<<endl;
+        setColor(15);
         return;
     }
+    setColor(14);
+    cout<<"==============================="<<endl;
+    setColor(15);
     cout<<"--- Descuentos disponibles ---"<<endl;//Se muestra los descuentos
+    setColor(14);
+    cout<<"==============================="<<endl;
+    setColor(15);
     for (int i=0;i<numeroDescuentos;++i){//Se usa un for para mostrar todos los descuentos registrados
+    	setColor(14);
+    	cout<<"*. ";
+    	setColor(15);
         cout<<"ID del descuento: "<<descuentos[i].id//Id del descuento
 			<<", precio para el descuento: $"<<descuentos[i].precioMinimo//precio minimo para el descuento
             <<", Cantidad para el descuento: "<<descuentos[i].cantidadMinima//cantidad minima para el descuento
@@ -782,14 +1154,14 @@ void mostrarDescuentos(const descuento descuentos[], int numeroDescuentos) {
 
 
 void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuentos, gestionDeventas ventas[], int &numeroVenta,const string& categoria) {
-
-	//productos predeterminados de la categoria vestimenta
+    // Inicializar productos predefinidos
+   //productos predeterminados de la categoria vestimenta
 	articulo[0].id = 1;
     articulo[0].nombre = "Zapatillas";
     articulo[0].precio = 20;
     articulo[0].categoria="Vestimenta";
     articulo[0].cantidad = 25;
-
+    
     articulo[1].id = 2;
     articulo[1].nombre = "Casaca";
     articulo[1].precio = 50;
@@ -807,6 +1179,7 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     articulo[3].precio = 20;
     articulo[3].categoria="Vestimenta";
     articulo[3].cantidad = 30;
+    
     
     //productos predeterminados de la categoria Lacteos
 	articulo[4].id = 5;
@@ -832,14 +1205,14 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     articulo[7].precio = 20;
     articulo[7].categoria="Lacteos";
     articulo[7].cantidad = 30;
-    
+
     //productos predeterminados de la categoria Mobiliario
 	articulo[8].id = 9;
     articulo[8].nombre = "Sillas";
     articulo[8].precio = 75;
     articulo[8].categoria="Mobiliario";
     articulo[8].cantidad = 25;
-    
+
     articulo[9].id = 10;
     articulo[9].nombre = "Mesa";
     articulo[9].precio = 110;
@@ -857,7 +1230,7 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     articulo[11].precio = 150;
     articulo[11].categoria="Mobiliario";
     articulo[11].cantidad = 30;
-    
+
     //productos predeterminados de la categoria Alimentos y Bebidas
 	articulo[12].id = 13;
     articulo[12].nombre = "Atun";
@@ -882,7 +1255,7 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     articulo[15].precio = 15;
     articulo[15].categoria="Alimentos y Bebidas";
     articulo[15].cantidad = 30;
-    
+
     //productos predeterminados de la categoria Limpieza e Higiene
 	articulo[16].id = 17;
     articulo[16].nombre = "Poett";
@@ -907,7 +1280,7 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     articulo[19].precio = 10;
     articulo[19].categoria="Limpieza e Higiene";
     articulo[19].cantidad = 30;
-    
+
     //productos predeterminados de la categoria Automotriz
 	articulo[20].id = 21;
     articulo[20].nombre = "Llantas";
@@ -929,14 +1302,14 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
 
     articulo[23].id = 24;
     articulo[23].nombre = "Laminas";
-    articulo[23].precio = 20;
+    articulo[23].precio = 6;
     articulo[23].categoria="Automotriz";
     articulo[23].cantidad = 30;
-	
+
 	//productos predeterminados de la categoria Mascotas
 	articulo[24].id = 25;
     articulo[24].nombre = "Cepillo";
-    articulo[24].precio = 6;
+    articulo[24].precio = 20;
     articulo[24].categoria="Mascotas";
     articulo[24].cantidad = 25;
 
@@ -957,7 +1330,7 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     articulo[27].precio = 8;
     articulo[27].categoria="Mascotas";
     articulo[27].cantidad = 30;
-	
+
 	//productos predeterminados de la categoria Electrodomesticos
 	articulo[28].id = 29;
     articulo[28].nombre = "Licuadora";
@@ -982,8 +1355,7 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     articulo[31].precio = 200;
     articulo[31].categoria="Electrodomesticos";
     articulo[31].cantidad = 30;
-    
-    
+
     // Inicializar productos predefinidos Electronica y Tecnologia
     articulo[32].id = 33;
     articulo[32].nombre = "Smartphone";
@@ -1002,21 +1374,20 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     articulo[34].precio = 600;
     articulo[34].categoria="Electronica y Tecnologia";
     articulo[34].cantidad = 15;
-
-    articulo[35].id = 36;
+	
+	articulo[35].id = 36;
     articulo[35].nombre = "Smartwatch";
     articulo[35].precio = 300;
     articulo[35].categoria="Electronica y Tecnologia";
     articulo[35].cantidad = 30;
-
+    
     articulo[36].id = 37;
     articulo[36].nombre = "Auriculares";
     articulo[36].precio = 150;
     articulo[36].categoria="Electronica y Tecnologia";
     articulo[36].cantidad = 50;
-    
-    numeroProducto = 37;
 
+    numeroProducto = 37;
     // Inicializar quejas predefinidas
     quejas[0].id = 1;
     quejas[0].descripcion = "Falla en el sistema operativo del Smartphone";
@@ -1088,22 +1459,21 @@ void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[]
     ventas[4].nombreProducto = "Auriculares";
     ventas[4].cantidad = 5;
     ventas[4].precioTotal = 712.5; // Descuento aplicado: 37.5 (5%)
-    
-    ventas[5].id = 6;
+
+	ventas[5].id = 6;
     ventas[5].nombreProducto = "Atun";
     ventas[5].cantidad = 6;
     ventas[5].precioTotal = 36; 
-    
+
 	ventas[6].id = 7;
     ventas[6].nombreProducto = "Blusa";
     ventas[6].cantidad = 3;
     ventas[6].precioTotal = 60;
-    
+
     ventas[7].id = 8;
     ventas[7].nombreProducto = "Sillas";
     ventas[7].cantidad = 4;
     ventas[7].precioTotal = 300;
-
     numeroVenta = 8;
 }
 
