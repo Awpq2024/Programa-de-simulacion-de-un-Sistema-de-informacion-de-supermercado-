@@ -12,7 +12,7 @@ reclamo quejas[maximosReclamos];
 descuento descuentos[maximosDescuentos];
 
 //Se inicializan los numeros de distintas estructuras en 0
-int numeroProducto=5;
+int numeroProducto=37;
 int numeroVenta=5;
 int numeroReclamo=5;
 int numeroDescuentos=5;
@@ -20,7 +20,7 @@ int numeroDescuentos=5;
 
 int main() {
 	//Se inicializan los ID para las estructuras de producto, reclamo y descuento
-    int siguienteID=6;
+    int siguienteID=38;
 	int siguienteIDReclamo=6;
 	int siguienteIDDescuento=6;
     int opcion;//se crea la variable opcion
