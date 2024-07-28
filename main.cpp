@@ -79,7 +79,7 @@ int main() {
                 break;                     
             case 2://Busqueda de un producto 
                 system("cls");
-				buscarProducto(articulo, numeroProducto, ventas, numeroVenta);
+				menuBuscarProducto(articulo, numeroProducto, ventas, numeroVenta);
             	break;
             case 3:				
 				system("cls");

@@ -19,9 +19,12 @@ void menuProductosCategorias(producto articulo[], int& numeroProducto, int& sigu
 //Menu de las funciones de las categorias
 void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int& siguienteID, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
 
-
+//Menu de busqueda de productos
+void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta);
 //Funcion de busqueda de productos
-void buscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta);
+void buscarProductoPorNombre(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta);
+void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta);
+
 
 
 //Funciones de productos
