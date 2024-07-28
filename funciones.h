@@ -9,9 +9,6 @@ using namespace std;
 void setColor(int color);
 void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuento,gestionDeventas ventas[], int &numeroVenta, const string& categoria);
 
-
-void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria);
-
 //Menu de categorias
 void menuProductosCategorias(producto articulo[], int& numeroProducto, int& siguienteID,  gestionDeventas ventas[], int& numeroVenta, string& categoria);
 
@@ -29,15 +26,13 @@ void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDevent
 
 //Funciones de productos
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
+void actualizarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
 
 //Submenu de mostrar productos
-void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVent,const string& categoriaa);
 void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
-
-//funciones
-void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
-
-
+void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVent,const string& categoriaa);
+void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria);
+void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria);
 
 //Menu de ventas
 void menuDeVentas( gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos);

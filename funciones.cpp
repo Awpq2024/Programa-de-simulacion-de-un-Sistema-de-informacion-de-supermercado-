@@ -47,7 +47,8 @@ void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int&
         cout << "--- Supermercado - Categorias ---" << endl;
         cout << "1. Agregar producto" << endl;
         cout << "2. Mostrar productos agregados" << endl;
-        cout << "3. Salir del menu de categorias" << endl;
+        cout << "3. Actualizar producto" << endl;
+        cout << "4. Salir del menu de categorias" << endl;
         cout << "Ingrese una opcion: ";
         cin >> opcionesFunciones;
 
@@ -61,6 +62,10 @@ void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int&
                 menuDeMostrarProductos(articulo, numeroProducto, ventas, numeroVenta,categoria);
                 break;
             case 3:
+                system("cls");
+				actualizarProducto(articulo, numeroProducto, siguienteID, categoria);
+				break;
+            case 4:
                 cout << "Saliendo del menu de categorias..." << endl;
                 break;
             default:
@@ -68,7 +73,7 @@ void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int&
                 system("pause");
         }
 
-    } while (opcionesFunciones != 3);
+    } while (opcionesFunciones != 4);
 }
 
 void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
@@ -101,7 +106,6 @@ void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventa
 
     } while (opcionesBusqueda != 3);
 }
-
 
 void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
     int escribirIdDelProducto;
@@ -255,7 +259,7 @@ void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, g
     } else {
         // Implementación de la ordenación alfabética
         for (int i = 0; i < numeroProducto - 1; ++i) {
-            for (int j = i + 1; j < numeroProducto; ++j) {
+            for (int j = i + 1; j < numeroProducto ; ++j) {
                 if (articulo[i].categoria == categoria && articulo[j].categoria == categoria) {
                     if (articulo[i].nombre > articulo[j].nombre) {
                         // Intercambiar productos
@@ -293,8 +297,8 @@ void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestion
         
     } else {
         // Ordenar productos por precio (de menor a mayor)
-        for (int i = 0; i < numeroProducto - 1; ++i) {
-            for (int j = i + 1; j < numeroProducto; ++j) {
+        for (int i = 0; i < numeroProducto - 1 ; ++i) {
+            for (int j = i + 1; j < numeroProducto ; ++j) {
                 if (articulo[i].categoria == categoria && articulo[j].categoria == categoria) {
                     if (articulo[i].precio > articulo[j].precio) {
                         // Intercambiar productos
@@ -307,7 +311,7 @@ void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestion
         }
 
         cout << "--- Productos ordenados por precio en la categoria: " << categoria << " ---" << endl;
-        for (int i = 0; i < numeroProducto; ++i) {
+        for (int i = numeroProducto - 1; i >= 0; --i) {
             if (articulo[i].categoria == categoria) {
                 cout << "ID del producto: " << articulo[i].id << ", Nombre: " << articulo[i].nombre
                      << ", Precio: $" << articulo[i].precio << ", Cantidad: " << articulo[i].cantidad
@@ -323,6 +327,28 @@ void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestion
             }
         }
      
+    }
+}
+void actualizarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria)
+{
+	string nombreActualizar;
+    cout<<"Ingrese el nombre del producto a actualizar: ";
+    cin.ignore();
+    getline(cin, nombreActualizar);
+    
+    for (int i = 0; i < numeroProducto; ++i) 
+	{
+        if (articulo[i].nombre == nombreActualizar) 
+		{
+            cout << "Ingrese el nuevo nombre del producto: ";
+            getline(cin, articulo[i].nombre);
+            cout << "Ingrese el nuevo precio por unidad del producto: ";
+            cin >> articulo[i].precio;
+            cout << "Ingrese la cantidad producto: ";
+            cin >> articulo[i].cantidad;
+            cout << "Producto actualizado correctamente.\n";
+            break;  
+        }
     }
 }
 
