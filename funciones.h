@@ -43,6 +43,8 @@ void registrarVenta( gestionDeventas ventas[],int &numeroVenta,producto articulo
 void mostrarVentas( gestionDeventas ventas[], int numeroVenta);
 void mostrarGanancias( gestionDeventas ventas[], int& numeroVenta);
 void productoMasVendido( gestionDeventas ventas[], int& numeroVenta, producto articulo[], int &numeroProducto);
+void eliminarVenta(gestionDeventas ventas[], int& numeroVenta);
+
 
 
 //Funciones reclamos
