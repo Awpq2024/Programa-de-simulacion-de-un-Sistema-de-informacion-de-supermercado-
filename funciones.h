@@ -27,6 +27,7 @@ void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDevent
 //Funciones de productos
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
 void actualizarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
+void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
 
 //Submenu de mostrar productos
 void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
