@@ -318,7 +318,8 @@ void menuDeVentas(gestionDeventas ventas[],int &numeroVenta,producto articulo[],
 
 
 void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
-    if (numeroVenta !=0 or numeroVenta < maximasVentas) {
+    bool productoEncontrado = false; 
+	if (numeroVenta < maximasVentas) {
         gestionDeventas temporal;
         cout << "Ingrese el nombre del producto: ";
         cin >> temporal.nombreProducto;
@@ -337,18 +338,21 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
                     float descuento = calcularDescuento(precioSinDescuento, temporal.cantidad, descuentos, numeroDescuentos);
                     ventas[numeroVenta].precioTotal = precioSinDescuento - descuento;
                     
-                    cout << "El precio total es: $" << ventas[numeroVenta].precioTotal<<"con un descuento de: "<<descuento<<endl;
+                    cout << "El precio total es: $" << ventas[numeroVenta].precioTotal<<" con un descuento de: "<<descuento<<endl;
                     cout << "Venta registrada correctamente." << endl;
                     numeroVenta++;
                 } else {
                     cout << "No hay suficiente cantidad de " << temporal.nombreProducto << " en el inventario." << endl;
-                }
-                break;
-            }
-            else{
-            	cout<<"No existe ese producto. "<<endl;
-            	
-			}
+                }               
+                productoEncontrado=true;
+                break; 
+        	}
+        	
+			
+		}
+		if(!productoEncontrado)
+		{
+			cout<<"No existe"<<endl;
 			
 		}
 		        
@@ -443,21 +447,26 @@ void eliminarVenta(gestionDeventas ventas[], int& numeroVenta)
 		cout<<"Escriba el nombre del producto: ";
 		cin.ignore();
 		getline(cin, nombreAEliminar);
-		for (int i=0; i <numeroVenta; i++)
-		{
-        	if (ventas[i].nombreProducto == nombreAEliminar) 
-			{
-        	    for (int j=i; j<numeroVenta-1; j++)
-				{
-            	    ventas[j] = ventas[j + 1];
+		int ultimoIndice=-1;
+		for (int i = numeroVenta - 1; i >= 0; i--) {
+            if (ventas[i].nombreProducto == nombreAEliminar) {
+                ultimoIndice = i;
+                break;
             }
-            numeroVenta--;
-            cout << "Venta eliminado." << endl;
-            break;
-        	}
-    	}
-	}
-    
+        }
+        if (ultimoIndice != -1) {
+            // Eliminar la venta en el índice encontrado
+            for (int i = ultimoIndice; i < numeroVenta - 1; i++) {
+                ventas[i] = ventas[i + 1];
+            }
+            numeroVenta--;  // Decrementa el número de ventas
+            ventas[numeroVenta] = {};  // Limpia la última posición
+
+            cout << "Última venta del producto '" << nombreAEliminar << "' eliminada." << endl;
+        } else {
+            cout << "No se encontraron ventas para el producto '" << nombreAEliminar << "'." << endl;
+        }
+    }
 }
 
 void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo){
