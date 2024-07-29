@@ -48,15 +48,15 @@ int main() {
 
         switch (opcion)
         {
-        	case 1:
+        	case 1://Se despliega el menu de categorias 
             	system("cls");
 				menuProductosCategorias(articulo, numeroProducto, siguienteID,  ventas, numeroVenta, categoria);
                 break;                     
-            case 2://Busqueda de un producto 
+            case 2://Se despliega el menu de buscar producto
                 system("cls");
 				menuBuscarProducto(articulo, numeroProducto, ventas, numeroVenta);
             	break;
-            case 3:				
+            case 3://Se despliega el menu de ventas 				
 				system("cls");
 				menuDeVentas(ventas, numeroVenta, articulo, numeroProducto, descuentos, numeroDescuentos);
     			break;            
