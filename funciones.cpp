@@ -359,7 +359,7 @@ void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas 
                         cantidadVendida += ventas[j].cantidad;
                     }
                 }
-                cout << "Cantidad vendida: " << cantidadVendida << endl;
+                cout << ", Cantidad vendida: " << cantidadVendida << endl;
                 cout << endl;
             }
         }
@@ -784,59 +784,69 @@ void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
 		cout<<"Ganancia total de las ventas realizadas: $ "<<sumaTotal<<endl;
 		cout<<endl;
 	}
-}
-void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto)
+}void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto)
 {
-	if(numeroVenta == 0)
-	{
-		setColor(12);
-		cout<<"*** No se registro ninguna venta."<<endl;
-		setColor(15);
-	}
-	else
-	{
-		int ventaMaxima=0;
-		for(int i = 0; i < numeroVenta ; i++){
-		
-			if(ventas[i].cantidad > ventaMaxima)
-			{	
-				ventaMaxima = ventas[i].cantidad;			
-			}		
-		}
-		setColor(14);
-      	cout<<"=========================================="<<endl;
-      	setColor(14);
-		cout << "El/Los productos mas vendidos fueron:\n" << endl;
-		setColor(14);
-      	cout<<"=========================================="<<endl;
-      	setColor(14);
-	    bool encontrado = false;
-	    for (int i = 0; i < numeroProducto; ++i) {
-	        int cantidadVendida = 0;
-    	    for (int j = 0; j < numeroVenta; ++j) {
-    	        if (ventas[j].nombreProducto == articulo[i].nombre) {
-            	
-    	            cantidadVendida += ventas[j].cantidad;
-        	    }
-       	 	}
-        	if (cantidadVendida == ventaMaxima) {
-        	    encontrado = true;
-        	    setColor(14);
-      			cout<<"*. "<<endl;
-      			setColor(7);
-        	    cout << "Nombre: " << articulo[i].nombre << endl;
-        	    cout << "ID del producto: " << articulo[i].id << ", Precio: $" << articulo[i].precio << ", Cantidad en inventario: " << articulo[i].cantidad << ", Cantidad vendida: " << cantidadVendida << endl;
-        	    cout << endl;
-        	}
-    	}
-
-    	if (!encontrado) {
-    		setColor(12);
-    	    cout << "*** No se encontraron productos más vendidos." << endl;
-    	    setColor(15);
-    	}
-	}
+    if (numeroVenta == 0)
+    {
+        setColor(12);
+        cout << "*** No se registro ninguna venta." << endl;
+        setColor(15);
+        return;
+    }
+    
+    // Crear un arreglo para llevar la cuenta de la cantidad vendida de cada producto
+    int cantidadesVendidas[numeroProducto] = {0};
+    
+    // Sumar la cantidad vendida para cada producto
+    for (int i = 0; i < numeroVenta; ++i)
+    {
+        for (int j = 0; j < numeroProducto; ++j)
+        {
+            if (ventas[i].nombreProducto == articulo[j].nombre)
+            {
+                cantidadesVendidas[j] += ventas[i].cantidad;
+            }
+        }
+    }
+    
+    // Encontrar la cantidad maxima vendida
+    int ventaMaxima = 0;
+    for (int i = 0; i < numeroProducto; ++i)
+    {
+        if (cantidadesVendidas[i] > ventaMaxima)
+        {
+            ventaMaxima = cantidadesVendidas[i];
+        }
+    }
+    
+    setColor(14);
+    cout << "==========================================" << endl;
+    cout << "El/Los productos mas vendidos fueron:" << endl;
+    cout << "==========================================" << endl;
+    
+    bool encontrado = false;
+    for (int i = 0; i < numeroProducto; ++i)
+    {
+        if (cantidadesVendidas[i] == ventaMaxima)
+        {
+            encontrado = true;
+            setColor(14);
+            cout << "*. " << endl;
+            setColor(7);
+            cout << "Nombre: " << articulo[i].nombre << endl;
+            cout << "ID del producto: " << articulo[i].id << ", Precio: $" << articulo[i].precio << ", Cantidad en inventario: " << articulo[i].cantidad << ", Cantidad vendida: " << cantidadesVendidas[i] << endl;
+            cout << endl;
+        }
+    }
+    
+    if (!encontrado)
+    {
+        setColor(12);
+        cout << "*** No se encontraron productos más vendidos." << endl;
+        setColor(15);
+    }
 }
+
 void eliminarVenta(gestionDeventas ventas[], int& numeroVenta)
 {
 	if(numeroVenta==0)
@@ -862,16 +872,16 @@ void eliminarVenta(gestionDeventas ventas[], int& numeroVenta)
             }
         }
         if (ultimoIndice != -1) {
-            // Eliminar la venta en el índice encontrado
+            // Eliminar la venta en el indice encontrado
             for (int i = ultimoIndice; i < numeroVenta - 1; i++) {
                 ventas[i] = ventas[i + 1];
             }
-            numeroVenta--;  // Decrementa el número de ventas
-            ventas[numeroVenta] = {};  // Limpia la última posición
+            numeroVenta--;  // Decrementa el numero de ventas
+            ventas[numeroVenta] = {};  // Limpia la ultima posicion
 			setColor(14);
 			cout<<"*. ";
 			setColor(7);
-            cout << "Última venta del producto '" << nombreAEliminar << "' eliminada." << endl;
+            cout << "Ultima venta del producto '" << nombreAEliminar << "' eliminada." << endl;
         } else {
         	setColor(12);
             cout << "No se encontraron ventas para el producto '" << nombreAEliminar << "'." << endl;
@@ -1101,7 +1111,6 @@ void agregarDescuento(descuento descuentos[], int &numeroDescuentos,int &siguien
         setColor(11);
         cout<<"+++ Descuento agregado exitosamente"<<endl;
         setColor(15);
-        system("pause");
     }else{//Se muestra un enunciado al llegar al  limite de descuentos 
     	setColor(12);
         cout<<"*** Limite de descuentos alcanzados"<<endl;

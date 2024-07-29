@@ -13,7 +13,7 @@ descuento descuentos[maximosDescuentos];
 
 //Se inicializan los numeros de distintas estructuras en 0
 int numeroProducto=37;
-int numeroVenta=5;
+int numeroVenta=8;
 int numeroReclamo=5;
 int numeroDescuentos=5;
 
@@ -32,43 +32,18 @@ int main() {
 
     do {//El menu se repite hasta elegir la opcion "6" del do while
     	system("cls");
-    	setColor(14);
-    	cout<<"==============================="<<endl;
-    	setColor(14);
-        cout<<"||        ";
-        setColor(15);
-		cout<<"Supermercado";
-		setColor(14);
+    	setColor(14);	cout<<"==============================="<<endl;
+        cout<<"||        ";	
+		setColor(15);				cout<<"Supermercado";	setColor(14);	
 		cout<<"       ||"<<endl;
-        setColor(14);
-      	cout<<"==============================="<<endl;
-      	setColor(14);
-        cout<<"1.";
-        setColor(7);
-		cout<<" Categorias "<<endl;
-		setColor(14);
-        cout<<"2.";
-        setColor(7);
-		cout<<" Buscar Producto"<<endl;
-		setColor(14);      
-        cout<<"3.";
-        setColor(7);
-		cout<<" Gestionar Ventas"<<endl;
-		setColor(14);
-        cout<<"4."; 
-		setColor(7);
-		cout<<" Gestionar Reclamos"<<endl;
-		setColor(14);
-        cout<<"5.";
-        setColor(7);
-		cout<<" Gestionar Descuentos"<<endl;
-		setColor(14);
-		cout<<"6.";
-		setColor(7);
-		cout<<" Salir del programa"<<endl;
-		setColor(14);
-		cout<<endl<<"-> Ingrese una opcion: ";
-        setColor(15);
+        setColor(14);	cout<<"==============================="<<endl;
+        cout<<"1.";	setColor(7);	cout<<" Categorias "<<endl;			 setColor(14);
+        cout<<"2.";	setColor(7);	cout<<" Buscar Producto"<<endl;		 setColor(14);      
+        cout<<"3.";	setColor(7);    cout<<" Gestionar Ventas"<<endl;	 setColor(14);
+        cout<<"4."; setColor(7);    cout<<" Gestionar Reclamos"<<endl;	 setColor(14);
+        cout<<"5."; setColor(7);    cout<<" Gestionar Descuentos"<<endl; setColor(14);
+		cout<<"6."; setColor(7);    cout<<" Salir del programa"<<endl;   setColor(14);
+		cout<<endl<<"-> Ingrese una opcion: ";							 setColor(15);
         cin>>opcion;//se introduce la opcion para usarla en el switch
 
         switch (opcion)
