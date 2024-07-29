@@ -5,8 +5,7 @@
 #include "estructuras.h"
 using namespace std;
 
-
-
+//Funcion menu de productos de las categorias
 void menuProductosCategorias(producto articulo[], int& numeroProducto, int& siguienteID,  gestionDeventas ventas[], int& numeroVenta, string& categoria){
 	int opcionCategorias;
 	do {//El menu se repite hasta elegir la opcion "6" del do while
@@ -83,7 +82,7 @@ void menuProductosCategorias(producto articulo[], int& numeroProducto, int& sigu
 
     } while(opcionCategorias!=0);
 }
-
+//Funcion de las funcionalidades de las categorias
 void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int& siguienteID, gestionDeventas ventas[], int& numeroVenta,const string& categoria) {
     int opcionesFunciones;
     do { // El menu se repite hasta elegir la opcion "3" del do while
@@ -124,19 +123,19 @@ void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int&
         cin >> opcionesFunciones;
 
         switch (opcionesFunciones) {
-            case 1:
+            case 1://Se despliega el agregar producto
                 system("cls");
                 agregarProducto(articulo, numeroProducto, siguienteID,categoria);
                 break;
-            case 2:
+            case 2://Se despliega el submenu mostrar productos
                 system("cls");
                 menuDeMostrarProductos(articulo, numeroProducto, ventas, numeroVenta,categoria);
                 break;
-            case 3:
+            case 3://Se despliega el actualizar producto
                 system("cls");
                 actualizarProducto(articulo, numeroProducto, siguienteID, categoria);
                 break;
-            case 4:
+            case 4://Se despliega el eliminar producto
                 system("cls");
                 eliminarProducto(articulo, numeroProducto, siguienteID, categoria);
                 break;
@@ -152,7 +151,7 @@ void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int&
     } while (opcionesFunciones != 0);
 }
 
-
+//Funcion agregar producto
 void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria) {
     if (numeroProducto < maximosProductos) {
         producto auxiliar;
@@ -187,6 +186,7 @@ void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID,
         system("pause");
     }
 }
+//Funcion actualizar producto
 void actualizarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria)
 {
 	string nombreActualizar;
@@ -231,6 +231,7 @@ void actualizarProducto(producto articulo[], int& numeroProducto, int& siguiente
         system("pause");
     }
 }
+//Funcion eliminar producto
 void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria)
 {
 	string nombreEliminar;
@@ -271,7 +272,7 @@ void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID
 			system("pause");
 		}
 }
-
+//Funcion menu mostrar productos
 void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria ) {
     int opcionMostrar;
     do {
@@ -308,17 +309,17 @@ void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDev
         cin >> opcionMostrar;
 
         switch (opcionMostrar) {
-            case 1:
+            case 1://Se despliega el mostrar productos
                 system("cls");
                 mostrarProductos(articulo, numeroProducto, ventas, numeroVenta, categoria);
                 system("pause");
                 break;
-            case 2:
+            case 2://Se despliega el mostrar productos alafabeticamente
                 system("cls");
                 mostrarProductosAlfabeticamente(articulo, numeroProducto, ventas, numeroVenta, categoria);
                 system("pause");
                 break;
-            case 3:
+            case 3://Se despliega el mostrar productos por precio del mas caro al mas barato 
                 system("cls");
                 mostrarProductosPorPrecio(articulo, numeroProducto, ventas, numeroVenta, categoria);
                 system("pause");
@@ -333,7 +334,7 @@ void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDev
         }
     } while (opcionMostrar != 0);
 }
-
+//Funcion mostrar producto 
 void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria) {
     if (numeroProducto == 0) {
     	setColor(12);
@@ -366,8 +367,7 @@ void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas 
         
     }
 }
-
-
+//Funcion mostrar producto alfabeticamente
 void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria) {
     if (numeroProducto == 0) {
     	setColor(12);
@@ -414,6 +414,7 @@ void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, g
     }
 }
 
+//Funcion mostrar prodcuto por precio 
 void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria) {
     if (numeroProducto == 0) {
     	setColor(12);
@@ -459,7 +460,7 @@ void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestion
      
     }
 }
-
+//Funcion menu buscar producto 
 void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
     int opcionesBusqueda;
     do { // El menu se repite hasta elegir la opcion "3" del do while
@@ -492,11 +493,11 @@ void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventa
         cin >> opcionesBusqueda;
 
         switch (opcionesBusqueda) {
-            case 1:
+            case 1://Se despliega el buscar producto por nombre
                 system("cls");
 				buscarProductoPorNombre(articulo, numeroProducto, ventas, numeroVenta);
                 break;
-            case 2:
+            case 2://Se despliega el buscar producto por ID
                 system("cls");
 				buscarProductoPorID(articulo, numeroProducto, ventas, numeroVenta);
                 break;
@@ -511,7 +512,7 @@ void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventa
 
     } while (opcionesBusqueda != 0);
 }
-
+//Funcion buscar producto por ID
 void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
     int escribirIdDelProducto;
     setColor(14);
@@ -549,6 +550,7 @@ void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDevent
     }
     system("pause");
 }
+//Funcion buscar producto por nombre
 void buscarProductoPorNombre(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta) {
     string escribirNombreDelProducto;
     setColor(14);
@@ -671,7 +673,7 @@ void menuDeVentas(gestionDeventas ventas[],int &numeroVenta,producto articulo[],
 			
 }	
 
-
+//Funcion registrar venta
 void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos){
     bool productoEncontrado = false; 
 	if (numeroVenta < maximasVentas) {
@@ -734,7 +736,7 @@ void registrarVenta(gestionDeventas ventas[],int &numeroVenta,producto articulo[
 	
     		
 }
-
+//Funcion mostrar ventas
 void mostrarVentas(gestionDeventas ventas[], int numeroVenta ){
 	if (numeroVenta==0){
 		setColor(12);
@@ -759,6 +761,7 @@ void mostrarVentas(gestionDeventas ventas[], int numeroVenta ){
         
     }	
 }
+//Funcion mostrar ganancias
 void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
 {
 	if(numeroVenta == 0)
@@ -784,7 +787,9 @@ void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
 		cout<<"Ganancia total de las ventas realizadas: $ "<<sumaTotal<<endl;
 		cout<<endl;
 	}
-}void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto)
+}
+//funcion producto mas vendido por el dinero recaudado 
+void productoMasVendido(gestionDeventas ventas[], int& numeroVenta, producto articulo[], int& numeroProducto)
 {
     if (numeroVenta == 0)
     {
@@ -846,7 +851,7 @@ void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
         setColor(15);
     }
 }
-
+//Funcion eliminar venta 
 void eliminarVenta(gestionDeventas ventas[], int& numeroVenta)
 {
 	if(numeroVenta==0)
@@ -889,7 +894,7 @@ void eliminarVenta(gestionDeventas ventas[], int& numeroVenta)
         }
     }
 }
-
+//Funcion del menu de reclamos
 void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo){
 	int opcionReclamo;
 	do {
@@ -925,17 +930,17 @@ void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo)
         setColor(15);
         cin>>opcionReclamo;
 		switch(opcionReclamo){
-			case 1:
+			case 1://Se despliega el agregar 
                 system("cls");
                 agregarReclamo(quejas, numeroReclamo, siguienteIDReclamo);
                 system("pause");
                 break;
-            case 2:
+            case 2://Se despliega el eliminar
                 system("cls");
                 eliminarReclamo(quejas, numeroReclamo);
                 system("pause");
                 break;
-            case 3:
+            case 3://Se despliega el mostrar 
                 system("cls");
                 mostrarReclamos(quejas, numeroReclamo);
                 system("pause");
@@ -951,6 +956,7 @@ void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo)
     }while(opcionReclamo!=0);
  
 }
+//Funcion agregar reclamos
 void agregarReclamo(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo){
     if (numeroReclamo<maximosReclamos){
         reclamo auxiliar;
@@ -971,6 +977,7 @@ void agregarReclamo(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclam
         setColor(15);
     }
 }
+//Funcion eliminar reclamo
 void eliminarReclamo(reclamo quejas[], int &numeroReclamo){
     int indice=-1;
     int id;
@@ -999,8 +1006,9 @@ void eliminarReclamo(reclamo quejas[], int &numeroReclamo){
         setColor(15);
     }
 }
+//Funcio mostrar reclamo 
 void mostrarReclamos(const reclamo quejas[], int numeroReclamo){
-    if (numeroReclamo==0){
+    if (numeroReclamo==0){//Si no hay reclamo te muestra el mensaje no hay reclamos
     	setColor(12);
         cout<<"*** No hay reclamos."<<endl;
         setColor(15);
@@ -1013,7 +1021,7 @@ void mostrarReclamos(const reclamo quejas[], int numeroReclamo){
         }
     }
 }
-
+//Funcion calcular descuento
 float calcularDescuento(float precioTotal, int cantidad, const descuento descuentos[], int numeroDescuentos) {
     float descuentoMaximo=0.0;
      for (int i=0;i<numeroDescuentos;++i) {
@@ -1026,6 +1034,7 @@ float calcularDescuento(float precioTotal, int cantidad, const descuento descuen
     }
     return descuentoMaximo;
 }
+//Funcion menu de descuentos
 void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguienteIDDescuento){
     int opcionDescuentos;
     do {
@@ -1061,22 +1070,22 @@ void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguiente
         setColor(15);
         cin>>opcionDescuentos;
         switch(opcionDescuentos){
-                case 1:
+                case 1://Se despliega el agregar  
                     system("cls");
                     agregarDescuento(descuentos, numeroDescuentos, siguienteIDDescuento);
                     system("pause");
                     break;
-                case 2:
+                case 2://Se despliega eliminar descuento 
                     system("cls");
                     eliminarDescuento(descuentos, numeroDescuentos);
                     system("pause");
                     break;
-                case 3:
+                case 3://Se despliega el mostrar 
                     system("cls");
                     mostrarDescuentos(descuentos, numeroDescuentos);
                     system("pause");
                     break;
-                case 0:
+                case 0://Se sale del menu de reclamos
                     break;
                 default:
                 	setColor(12);
@@ -1086,6 +1095,7 @@ void MenuDescuentos(descuento descuentos[], int &numeroDescuentos,int &siguiente
                     break;
                     }
     }while(opcionDescuentos!=0);
+    
 }
 
 void agregarDescuento(descuento descuentos[], int &numeroDescuentos,int &siguienteIDDescuento){
