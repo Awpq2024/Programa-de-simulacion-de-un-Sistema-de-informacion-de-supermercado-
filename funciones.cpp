@@ -809,7 +809,7 @@ void mostrarGanancias(gestionDeventas ventas[], int& numeroVenta)
         }
     }
     
-    // Encontrar la cantidad máxima vendida
+    // Encontrar la cantidad maxima vendida
     int ventaMaxima = 0;
     for (int i = 0; i < numeroProducto; ++i)
     {
@@ -872,12 +872,12 @@ void eliminarVenta(gestionDeventas ventas[], int& numeroVenta)
             }
         }
         if (ultimoIndice != -1) {
-            // Eliminar la venta en el índice encontrado
+            // Eliminar la venta en el indice encontrado
             for (int i = ultimoIndice; i < numeroVenta - 1; i++) {
                 ventas[i] = ventas[i + 1];
             }
-            numeroVenta--;  // Decrementa el número de ventas
-            ventas[numeroVenta] = {};  // Limpia la última posición
+            numeroVenta--;  // Decrementa el numero de ventas
+            ventas[numeroVenta] = {};  // Limpia la ultima posicion
 			setColor(14);
 			cout<<"*. ";
 			setColor(7);
