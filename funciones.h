@@ -5,44 +5,35 @@
 #include "estructuras.h"
 using namespace std;
 
+//Funcion para aplicar colores
 void setColor(int color);
+
+//Funcion para inicializar los datos predeterminados
 void inicializarDatos(producto articulo[], int &numeroProducto, reclamo quejas[], int &numeroReclamo, descuento descuentos[], int &numeroDescuento,gestionDeventas ventas[], int &numeroVenta, const string& categoria);
 
 
-
+//1. Funciones de categorias
+void menuProductosCategorias(producto articulo[], int& numeroProducto, int& siguienteID,  gestionDeventas ventas[], int& numeroVenta, string& categoria);
+void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int& siguienteID, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
+//1.1 Funciones de productos
+void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
+void actualizarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
+void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
+//1.1.1 Funciones para mostrar productos
+void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
+void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
+void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVent,const string& categoriaa);
 void mostrarProductosPorPrecio(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta, const string& categoria);
 
-//Menu de categorias
-void menuProductosCategorias(producto articulo[], int& numeroProducto, int& siguienteID,  gestionDeventas ventas[], int& numeroVenta, string& categoria);
 
-
-//Menu de las funciones de las categorias
-void funcionesDelMenuDeCategorias(producto articulo[], int& numeroProducto, int& siguienteID, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
-
-
-//Submenu de mostrar productos
+//2. Funciones para buscar productos
 void menuBuscarProducto(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta);
 void buscarProductoPorNombre(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta); 
 void buscarProductoPorID(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta);
 
-//Funciones de productos
-void agregarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
-void actualizarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
-void eliminarProducto(producto articulo[], int& numeroProducto, int& siguienteID,const string& categoria);
 
-//Submenu de mostrar productos
-void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
-void mostrarProductosAlfabeticamente(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVent,const string& categoriaa);
-void menuDeMostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
-
-//funciones
-void mostrarProductos(producto articulo[], int& numeroProducto, gestionDeventas ventas[], int& numeroVenta,const string& categoria);
-
-
-
-//Menu de ventas
+//3. Funciones para gestionar ventas.
 void menuDeVentas( gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos);
-//funciones Ventas
 void registrarVenta( gestionDeventas ventas[],int &numeroVenta,producto articulo[], int &numeroProducto,const descuento descuentos[],int numeroDescuentos);
 void mostrarVentas( gestionDeventas ventas[], int numeroVenta);
 void mostrarGanancias( gestionDeventas ventas[], int& numeroVenta);
@@ -50,13 +41,12 @@ void productoMasVendido( gestionDeventas ventas[], int& numeroVenta, producto ar
 void eliminarVenta(gestionDeventas ventas[], int& numeroVenta);
 
 
-
 //Funciones reclamos
 void MenuReclamos(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo);
-//--- Menu de Reclamos ---//
 void agregarReclamo(reclamo quejas[], int &numeroReclamo, int &siguienteIDReclamo);//Funcion Agregar un Reclamo
 void mostrarReclamos(const reclamo quejas[], int numeroReclamo);//Funcion Mostrar un Reclamo
 void eliminarReclamo(reclamo quejas[], int &numeroReclamo);//Funcion Eliminar un Reclamo
+
 
 //Funciones de descuentos
 void MenuDescuentos(descuento descuentos[], int &numeroDescuento,int &siguienteIDDescuento);
